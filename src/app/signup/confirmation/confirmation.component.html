@@ -1,0 +1,8 @@
+<form>
+  <h1>Enter Confirmation</h1>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Confirmation Code</label>
+    <input [(ngModel)]="user.code" type="password" name="code" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+  <button type="button" (click)="submit(user)" class="btn btn-primary">Submit</button>
+</form>
