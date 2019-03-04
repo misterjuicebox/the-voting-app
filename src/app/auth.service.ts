@@ -24,6 +24,7 @@ export class AuthService {
       identityPoolId: environment.cognito.IDENTITY_POOL_ID,
       userPoolWebClientId: environment.cognito.APP_CLIENT_ID
     });
+
     this.loggedIn = new BehaviorSubject<boolean>(false);
   }
 

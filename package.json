@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "predeploy": "npm run build",
-    "deploy": "aws s3 sync dist/the-voting-app-dev s3://the-voting-app-client-dev --delete",
+    "awsdeploy": "aws s3 sync dist/the-voting-app-dev s3://the-voting-app-client-dev --delete",
     "postdeploy": "aws cloudfront create-invalidation --distribution-id E1UHIMWN768G6J --paths '/*' && aws cloudfront create-invalidation --distribution-id E2Y0H27MN24L6Z --paths '/*'"
   },
   "private": true,
@@ -29,6 +29,7 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "rxjs": "~6.3.3",
+    "rxjs-compat": "^6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },
