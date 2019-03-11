@@ -17,8 +17,8 @@ export class SignupComponent implements OnInit {
   }
 
   submit(user: any) {
-    debugger;
-    const email = user.email, password = user.password;
+    const email = user.email;
+    const password = user.password;
     this.authService.signUp(email, password).subscribe(result => {
       debugger;
       this.showConfirmation = true;

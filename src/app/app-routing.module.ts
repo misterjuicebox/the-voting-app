@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
+  {path: '', loadChildren: './../app/home/home.module#HomeModule'},
   {path: 'signup', loadChildren: './../app/signup/signup.module#SignupModule'},
   {path: 'login', loadChildren: './../app/login/login.module#LoginModule'},
   {path: 'dashboard', loadChildren: './../app/dashboard/dashboard.module#DashboardModule'},

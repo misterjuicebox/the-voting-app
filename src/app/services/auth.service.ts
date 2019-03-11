@@ -16,7 +16,6 @@ export class AuthService {
   constructor(
     private router: Router
   ) {
-    debugger;
     Amplify.configure({
       mandatorySignIn: true,
       region: environment.cognito.REGION,
