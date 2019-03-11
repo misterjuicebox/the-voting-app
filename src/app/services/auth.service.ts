@@ -6,7 +6,7 @@ import { fromPromise} from "rxjs/internal-compatibility";
 import { map, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import Amplify, { Auth } from 'aws-amplify';
-import { environment} from "../environments/environment";
+import { environment} from "../../environments/environment";
 
 @Injectable()
 export class AuthService {

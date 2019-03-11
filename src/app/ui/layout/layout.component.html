@@ -1,5 +1,49 @@
 <app-header></app-header>
-<div class="container">
-  <ng-content></ng-content>
-</div>
+  <div class="container">
+    <ng-content></ng-content>
+    <div class="row pt-5 pb-5 mb-5">
+      <div class="col-xs-4">
+        <button type="button"
+                [routerLink]="['/signup']"
+                class="btn btn-large btn-warning btn-block">
+          Signup
+        </button>
+        <button type="button"
+                [routerLink]="['/signup/confirmation']"
+                class="btn btn-large btn-warning btn-block">
+          Confirmation
+        </button>
+        <button type="button"
+                [routerLink]="['/login']"
+                class="btn btn-large btn-warning btn-block">
+          Login
+        </button>
+        <button type="button"
+                [routerLink]="['/dashboard']"
+                class="btn btn-large btn-warning btn-block">
+          Dashboard
+        </button>
+        <button type="button"
+                [routerLink]="['/voter-group/create']"
+                class="btn btn-large btn-warning btn-block">
+          Create Voter Group
+        </button>
+        <button type="button"
+                [routerLink]="['/voter-group']"
+                class="btn btn-large btn-warning btn-block">
+          Voter Group
+        </button>
+        <button type="button"
+                [routerLink]="['/proposal/create']"
+                class="btn btn-large btn-warning btn-block">
+          Create Proposal
+        </button>
+        <button type="button"
+                [routerLink]="['/proposal/id']"
+                class="btn btn-large btn-warning btn-block">
+          Vote on Proposal
+        </button>
+      </div>
+    </div>
+  </div>
 <app-footer></app-footer>

@@ -1,0 +1,49 @@
+<form>
+  <h1>Create a Voter Group</h1>
+  <div class="form-group">
+    <label for="voterGroupName">Name</label>
+    <input type="text"
+           name="name"
+           class="form-control"
+           id="voterGroupName"
+           aria-describedby="nameHelp"
+           placeholder="Enter name of the voter group">
+  </div>
+  <div class="form-group">
+    <label for="voterGroupDescription">Description</label>
+    <textarea class="form-control"
+              name="description"
+              id="voterGroupDescription"
+              placeholder="Describe your voter group"
+              rows="3">
+    </textarea>
+  </div>
+  <div *ngIf="addVoter" class="input-group mb-3">
+    <input type="email"
+           name="email"
+           class="form-control"
+           id="loginEmail"
+           aria-describedby="emailHelp"
+           placeholder="Enter email">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button">Invite Voter</button>
+    </div>
+  </div>
+  <div class="row p-0">
+    <div class="col-sm-4 mb-2">
+      <button type="button"
+              class="btn btn-large btn-warning"
+              (click)="addVoter = true;">
+        Add Voter
+      </button>
+    </div>
+  </div>
+  <div class="row p-0">
+    <div class="col-sm-4">
+      <button type="button"
+              class="btn btn-primary">
+        Create Proposal
+      </button>
+    </div>
+  </div>
+</form>
