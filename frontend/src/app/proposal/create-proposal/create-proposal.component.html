@@ -1,0 +1,43 @@
+<form>
+  <h1>Create a Proposal</h1>
+  <div class="form-group">
+    <label for="proposalVoterGroup">Select Voter Group</label>
+    <select class="form-control" id="proposalVoterGroup">
+      <option>Shareholders</option>
+      <option>Residents</option>
+      <option>Board of Directors</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="proposalName">Name</label>
+    <input type="text"
+           name="name"
+           class="form-control"
+           id="proposalName"
+           aria-describedby="nameHelp"
+           placeholder="Enter name of the proposal">
+  </div>
+  <div class="form-group">
+    <label for="proposalDescription">Description</label>
+    <textarea class="form-control"
+              name="description"
+              id="proposalDescription"
+              placeholder="Describe your proposal"
+              rows="3">
+    </textarea>
+  </div>
+  <div class="custom-file mb-3">
+    <input type="file"
+           class="custom-file-input"
+           id="proposalAttachment">
+    <label class="custom-file-label"
+           for="proposalAttachment">
+      Choose file...
+    </label>
+  </div>
+  <button type="button"
+          class="btn btn-primary"
+          (click)="createProposal">
+    Create Proposal
+  </button>
+</form>
