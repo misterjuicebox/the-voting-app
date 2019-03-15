@@ -17,10 +17,10 @@ export class ProposalService {
   /**
    * creates a proposal
    */
-  createProposal(params: any) {
-    return this.http.post('https://rp0nyddnwk.execute-api.us-east-1.amazonaws.com/dev' + '/createProposal', JSON.stringify(params), this.authService.getHeaders())
-      .catch(error => {return console.log('error'); });
-
-  } // createProposal()
+  // createProposal(params: any) {
+  //   return this.http.post('https://rp0nyddnwk.execute-api.us-east-1.amazonaws.com/dev' + '/createProposal', JSON.stringify(params), this.authService.getHeaders())
+  //     .catch(error => {return console.log('error'); });
+  //
+  // } // createProposal()
 
 }

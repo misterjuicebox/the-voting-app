@@ -14,7 +14,7 @@ export class CreateProposalComponent implements OnInit {
   }
 
   createProposal() {
-    this.proposalService.createProposal(params)
+    // this.proposalService.createProposal(params)
   }
 
 }

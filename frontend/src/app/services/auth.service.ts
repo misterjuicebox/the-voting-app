@@ -34,8 +34,8 @@ export class AuthService {
     };
   }
   /** signup */
-  public signUp(email, password): Observable<any> {
-    return fromPromise(Auth.signUp(email, password));
+  public signUp(params): Observable<any> {
+    return fromPromise(Auth.signUp(params));
   }
 
   /** confirm code */
