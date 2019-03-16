@@ -45,9 +45,26 @@ export class AuthService {
 
   /** signin */
   public signIn(email, password): Observable<any> {
+    debugger;
     return fromPromise(Auth.signIn(email, password))
       .pipe(
-        tap(() => this.loggedIn.next(true))
+        tap(() => {
+          debugger;
+          // console.log('logged in');
+          this.loggedIn.next(true);
+          // this.getCognitoUserInfo();
+        })
+      );
+  }
+
+  public getCognitoUserInfo() {
+    debugger;
+    return fromPromise(Auth.currentUserInfo())
+      .subscribe(
+        result => {
+          console.log(result);
+        },
+        error => console.log(error)
       );
   }
 
