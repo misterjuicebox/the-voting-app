@@ -15,13 +15,13 @@ export class AuthService {
   public loggedIn: BehaviorSubject<boolean>;
 
   constructor(private router: Router) {
-    Amplify.configure({
-      mandatorySignIn: true,
-      region: environment.cognito.REGION,
-      userPoolId: environment.cognito.USER_POOL_ID,
-      identityPoolId: environment.cognito.IDENTITY_POOL_ID,
-      userPoolWebClientId: environment.cognito.APP_CLIENT_ID
-    });
+    // Amplify.configure({
+    //   mandatorySignIn: true,
+    //   region: environment.cognito.REGION,
+    //   userPoolId: environment.cognito.USER_POOL_ID,
+    //   identityPoolId: environment.cognito.IDENTITY_POOL_ID,
+    //   userPoolWebClientId: environment.cognito.APP_CLIENT_ID
+    // });
 
     this.loggedIn = new BehaviorSubject<boolean>(false);
   }

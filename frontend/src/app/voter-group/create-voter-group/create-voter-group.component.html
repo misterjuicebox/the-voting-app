@@ -7,6 +7,7 @@
            class="form-control"
            id="voterGroupName"
            aria-describedby="nameHelp"
+           [(ngModel)]="voterGroup.name"
            placeholder="Enter name of the voter group">
   </div>
   <div class="form-group">
@@ -14,6 +15,7 @@
     <textarea class="form-control"
               name="description"
               id="voterGroupDescription"
+              [(ngModel)]="voterGroup.description"
               placeholder="Describe your voter group"
               rows="3">
     </textarea>
@@ -41,8 +43,9 @@
   <div class="row p-0">
     <div class="col-sm-4">
       <button type="button"
-              class="btn btn-primary">
-        Create Proposal
+              class="btn btn-primary"
+              (click)="createVoterGroup(voterGroup)">
+        Create Voter Group
       </button>
     </div>
   </div>

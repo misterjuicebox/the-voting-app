@@ -1,26 +1,32 @@
-export async function main(event, context) {
-    console.log(event);
+import * as dynamoDbLib from "../libs/dynamodb-lib";
+import {failure, success} from "../libs/response-lib";
 
-  if (event.request.userAttributes) {
-    console.log(event.request);
-  }
-  
+export async function main(event, context, callback) {
+
   // const data = JSON.parse(event.body);
-  // const params = {
-  //   TableName: process.env.tableName,
-  //   Item: {
-  //     userId: event.requestContext.identity.cognitoIdentityId,
-  //     noteId: uuid.v1(),
-  //     content: data.content,
-  //     attachment: data.attachment,
-  //     createdAt: Date.now()
-  //   }
-  // };
+  const params = {
+    TableName: process.env.tableName,
+    Item: {
+      userId: event.userName,
+      email: event.request.userAttributes.email,
+      firstName: event.request.userAttributes['custom:firstName'],
+      lastName: event.request.userAttributes['custom:lastName'],
+      createdAt: Date.now()
+    }
+  };
 
-  // try {
-  //   await dynamoDbLib.call("put", params);
-  //   return success(params.Item);
-  // } catch (e) {
-  //   return failure({ status: false });
-  // }
-}
+  try {
+    await dynamoDbLib.call("put", params);
+    // Return to Amazon Cognito
+    callback(null, event);
+    // return success(params.Item);
+  } catch (e) {
+    // Return to Amazon Cognito
+    callback(null, event);
+    // return failure({ status: false });
+  }
+};
+
+
+
+

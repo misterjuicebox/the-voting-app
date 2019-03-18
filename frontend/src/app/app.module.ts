@@ -7,6 +7,8 @@ import { UiModule } from './ui/ui.module';
 import {AuthGuard} from './guards/auth.guard';
 import {AuthService} from './services/auth.service';
 import {ProposalService} from './services/proposal.service';
+import {VoterGroupService} from './services/voterGroup.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,7 @@ import {ProposalService} from './services/proposal.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -25,6 +28,7 @@ import {ProposalService} from './services/proposal.service';
   providers: [
     AuthService,
     ProposalService,
+    VoterGroupService,
     AuthGuard
   ],
   bootstrap: [AppComponent]
