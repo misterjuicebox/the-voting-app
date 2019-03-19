@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProposalService} from '../../services/proposal.service';
+import {VoterGroupService} from '../../services/voterGroup.service';
 
 @Component({
   selector: 'app-create-proposal',
@@ -8,12 +9,28 @@ import {ProposalService} from '../../services/proposal.service';
 })
 export class CreateProposalComponent implements OnInit {
 
-  constructor(private proposalService: ProposalService) { }
+  voterGroups: any = [];
+  proposal: any = {};
+
+  constructor(private proposalService: ProposalService,
+              private voterGroupService: VoterGroupService) { }
 
   ngOnInit() {
+    this.getVoterGroups();
   }
 
-  createProposal() {
+  getVoterGroups() {
+    this.voterGroupService.getVoterGroups()
+      .subscribe(result => {
+        this.voterGroups = result;
+        console.log(result)
+      });
+  }
+
+  createProposal(proposal: any) {
+    this.proposal;
+    console.log(proposal);
+    console.log(this.proposal);
     // this.proposalService.createProposal(params)
   }
 

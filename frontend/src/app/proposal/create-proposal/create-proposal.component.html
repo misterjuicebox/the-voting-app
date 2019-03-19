@@ -1,11 +1,12 @@
-<form>
+<form name="createProposal">
   <h1>Create a Proposal</h1>
   <div class="form-group">
-    <label for="proposalVoterGroup">Select Voter Group</label>
-    <select class="form-control" id="proposalVoterGroup">
-      <option>Shareholders</option>
-      <option>Residents</option>
-      <option>Board of Directors</option>
+    <label for="voterGroup">Select Voter Group</label>
+    <select class="form-control" id="voterGroup" name="voterGroup" [(ngModel)]="proposal.voterGroupId">
+      <option *ngFor="let voterGroup of voterGroups"
+              [value]="voterGroup.voterGroupId">
+        {{voterGroup.name}}
+      </option>
     </select>
   </div>
   <div class="form-group">
@@ -15,6 +16,7 @@
            class="form-control"
            id="proposalName"
            aria-describedby="nameHelp"
+           [(ngModel)]="proposal.name"
            placeholder="Enter name of the proposal">
   </div>
   <div class="form-group">
@@ -22,6 +24,7 @@
     <textarea class="form-control"
               name="description"
               id="proposalDescription"
+              [(ngModel)]="proposal.description"
               placeholder="Describe your proposal"
               rows="3">
     </textarea>
@@ -37,7 +40,7 @@
   </div>
   <button type="button"
           class="btn btn-primary"
-          (click)="createProposal">
+          (click)="createProposal(proposal)">
     Create Proposal
   </button>
 </form>

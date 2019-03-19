@@ -58,6 +58,11 @@ provider:
 #    # the specific table for the stage
     Resource:
     - "Fn::GetAtt": [ VoterGroupsTable, Arn ]
+    - Fn::Join:
+      - "/"
+      -
+        - { "Fn::GetAtt": [VoterGroupsTable, Arn ] }
+        - "index/*"
 #    - "Fn::GetAtt": [ UserVoterGroupTable, Arn ]
 
 functions:

@@ -4,13 +4,14 @@ import { success, failure } from "../libs/response-lib";
 
 export async function main(event, context) {
   const data = JSON.parse(event.body);
+  console.log(event);
   const params = {
     TableName: process.env.tableName1,
     Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       voterGroupId: uuid.v1(),
-      name: data.name,
-      description: data.description,
+      GroupName: data.name,
+      GroupDescription: data.description,
       createdAt: Date.now()
     }
   };
