@@ -28,7 +28,7 @@ Resources:
         Projection:
 #          NonKeyAttributes:
 #          - Album
-          ProjectionType: KEYS_ONLY
+          ProjectionType: ALL
         # Set the capacity based on the stage
         ProvisionedThroughput:
           ReadCapacityUnits: ${self:custom.tableThroughput}

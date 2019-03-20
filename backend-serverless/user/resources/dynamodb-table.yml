@@ -6,10 +6,28 @@ Resources:
       AttributeDefinitions:
         - AttributeName: userId
           AttributeType: S
+        - AttributeName: email
+          AttributeType: S
       KeySchema:
         - AttributeName: userId
           KeyType: HASH
+        - AttributeName: email
+          KeyType: RANGE
       # Set the capacity based on the stage
       ProvisionedThroughput:
         ReadCapacityUnits: ${self:custom.tableThroughput}
         WriteCapacityUnits: ${self:custom.tableThroughput}
+      GlobalSecondaryIndexes:
+      - IndexName: emailUsersIdx
+        KeySchema:
+        - AttributeName: email
+          KeyType: HASH
+        - AttributeName: userId
+          KeyType: RANGE
+
+        Projection:
+          ProjectionType: ALL
+        # Set the capacity based on the stage
+        ProvisionedThroughput:
+          ReadCapacityUnits: ${self:custom.tableThroughput}
+          WriteCapacityUnits: ${self:custom.tableThroughput}

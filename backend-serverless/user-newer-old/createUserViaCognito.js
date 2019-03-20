@@ -1,15 +1,13 @@
-let AWS = require('aws-sdk');
+import * as dynamoDbLib from "../libs/dynamodb-lib";
+import {failure, success} from "../libs/response-lib";
 
-
-// import * as dynamoDbLib from "../libs/dynamodb-lib";
-
-exports.main = async function main(event, context, callback) {
+export async function main(event, context, callback) {
   console.log(event);
   // const data = JSON.parse(event.body);
   const params = {
     TableName: process.env.tableName,
     Item: {
-      userId: event.request.userAttributes.sub,
+      userId: event.request.userAttributes.email,
       email: event.request.userAttributes.email,
       firstName: event.request.userAttributes['custom:firstName'],
       lastName: event.request.userAttributes['custom:lastName'],
@@ -18,7 +16,7 @@ exports.main = async function main(event, context, callback) {
   };
 
   try {
-    await call("put", params);
+    await dynamoDbLib.call("put", params);
     // Return to Amazon Cognito
     callback(null, event);
     // return success(params.Item);
@@ -28,12 +26,6 @@ exports.main = async function main(event, context, callback) {
     // return failure({ status: false });
   }
 };
-
-function call(action, params) {
-  const dynamoDb = new AWS.DynamoDB.DocumentClient();
-
-  return dynamoDb[action](params).promise();
-}
 
 
 
