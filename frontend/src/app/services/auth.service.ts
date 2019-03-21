@@ -5,14 +5,18 @@ import { BehaviorSubject } from 'rxjs';
 import { fromPromise} from "rxjs/internal-compatibility";
 import { map, tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify, { Auth, API } from 'aws-amplify';
 import { environment} from "../../environments/environment";
 import {HttpHeaders} from '@angular/common/http';
+
 
 @Injectable()
 export class AuthService {
 
   public loggedIn: BehaviorSubject<boolean>;
+
+  private API_URL = 'https://ril7jqatdc.execute-api.us-east-1.amazonaws.com/dev';
+
 
   constructor(private router: Router) {
     // Amplify.configure({
@@ -59,12 +63,25 @@ export class AuthService {
 
   public getCognitoUserInfo() {
     debugger;
-    return fromPromise(Auth.currentUserInfo())
-      .subscribe(
+    return fromPromise(Auth.currentUserInfo());
+      // .subscribe(
+      //   result => {
+      //     console.log(result);
+      //   },
+      //   error => console.log(error)
+      // );
+  }
+  public getUser(params: any) {
+    return fromPromise(API.post("getUser", "/getUser", {body: params}))
+      .map(
         result => {
-          console.log(result);
+          debugger;
+          return result;
         },
-        error => console.log(error)
+        error => {
+          // return and handle error
+          console.log(error);
+        }
       );
   }
 

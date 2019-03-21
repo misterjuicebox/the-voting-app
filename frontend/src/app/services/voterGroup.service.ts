@@ -14,6 +14,18 @@ export class VoterGroupService {
 
   private API_URL = 'https://3ybk8299p4.execute-api.us-east-1.amazonaws.com/dev';
 
+  private _selectedVoterGroup: any = {};
+
+  get selectedVoterGroup(): any {
+    debugger;
+    return this._selectedVoterGroup;
+  }
+
+  set selectedVoterGroup(value: any) {
+    debugger;
+    this._selectedVoterGroup = value;
+  }
+
   constructor(private http: HttpClient) {
     // Amplify.configure({
     //   API: {
@@ -50,6 +62,19 @@ export class VoterGroupService {
       );
   }
 
+  addVoterToGroup (params: any): Observable<any> {
+    return fromPromise(API.post("addVoterToGroup", "/addVoterToGroup", {body: params}))
+      .map(
+        result => {
+          debugger;
+          return result;
+        },
+        error => {
+          // return and handle error
+          console.log(error);
+        }
+      );
+  }
   getVoterGroups (params?: any): Observable<any> {
     return fromPromise(API.post("getVoterGroups", "/getVoterGroups", {body: params}))
       .map(

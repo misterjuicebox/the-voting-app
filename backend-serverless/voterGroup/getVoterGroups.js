@@ -3,19 +3,21 @@ import { success, failure } from "../libs/response-lib";
 
 export async function main(event, context, callback) {
   // const data = JSON.parse(event.body);
+  const data = JSON.parse(event.body);
   const params = {
     TableName: 'dev-voterGroups',
     IndexName: "userVoterGroupIdx",
     KeyConditionExpression: "userId = :userId",
     ExpressionAttributeValues: {
-      ":userId": event.requestContext.identity.cognitoIdentityId
+      ":userId": data.userId
     },
     Projection: {
       ProjectionType: "ALL",
       NonKeyAttributes: [
         "name, description"
       ]
-    }  };
+    }
+  };
 
   try {
     const result = await dynamoDbLib.call("query", params);

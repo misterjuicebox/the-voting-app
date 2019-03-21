@@ -10,7 +10,7 @@ export async function main(event, context) {
     TableName: process.env.tableName1,
     Item: {
       userId: data.userId,
-      voterGroupId: uuid.v1(),
+      voterGroupId: data.voterGroupId,
       name: data.name,
       description: data.description,
       createdAt: Date.now()

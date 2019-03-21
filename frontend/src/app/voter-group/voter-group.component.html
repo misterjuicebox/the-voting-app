@@ -1,4 +1,5 @@
-<h2>Quarry Board of Directors</h2>
+<h2>{{voterGroup.name}}</h2>
+<p>{{voterGroup.description}}</p>
 <div class="card shadow mb-5 bg-white rounded"
      style="width: 18rem;">
   <ul class="list-group list-group-flush">
@@ -28,9 +29,10 @@
          name="email"
          class="form-control"
          id="loginEmail"
+         [(ngModel)]="newVoter.email"
          aria-describedby="emailHelp"
          placeholder="Enter email">
   <div class="input-group-append">
-    <button class="btn btn-primary" type="button">Invite Voter</button>
+    <button class="btn btn-primary" type="button" (click)="inviteUser(newVoter)">Invite Voter</button>
   </div>
 </div>

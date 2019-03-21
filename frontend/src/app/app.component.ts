@@ -41,6 +41,16 @@ export class AppComponent {
             name: "getVoterGroups",
             endpoint: 'https://3ybk8299p4.execute-api.us-east-1.amazonaws.com/dev',
             region: 'us-east-1'
+          },
+          {
+            name: "addVoterToGroup",
+            endpoint: 'https://3ybk8299p4.execute-api.us-east-1.amazonaws.com/dev',
+            region: 'us-east-1'
+          },
+          {
+            name: "getUser",
+            endpoint: 'https://ril7jqatdc.execute-api.us-east-1.amazonaws.com/dev',
+            region: 'us-east-1'
           }
         ]
       }

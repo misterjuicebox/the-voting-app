@@ -93,6 +93,15 @@ functions:
         cors: true
         authorizer: aws_iam
 
+  addVoterToGroup:
+    handler: addVoterToGroup.main
+    events:
+    - http:
+        path: addVoterToGroup
+        method: post
+        cors: true
+        authorizer: aws_iam
+
 # Create our resources with separate CloudFormation templates
 resources:
 # API Gateway Errors

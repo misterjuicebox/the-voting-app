@@ -10,30 +10,39 @@
 </div>
 
 <h2>Your Voting Groups</h2>
-<div class="card shadow mb-5 bg-white rounded">
-  <h4 class="card-header">Quarry Residents</h4>
+
+
+<div *ngFor="let voterGroup of voterGroups" class="card shadow mb-5 bg-white rounded">
+  <h4 class="card-header">{{voterGroup.name}}</h4>
   <div class="card-body">
+    <h6 class="card-title">
+      {{voterGroup.description}}
+    </h6>
     <h6 class="card-title">
       <span class="font-weight-bold">Participants: </span>23
     </h6>
-    <a class="btn btn-warning" [routerLink]="['/voter-group']">View Voter Group</a>
+    <button type="button"
+            class="btn btn-warning"
+            (click)="viewVoterGroup(voterGroup)">
+      View Voter Group
+    </button>
   </div>
 </div>
-<div class="card shadow mb-5 bg-white rounded">
-  <h4 class="card-header">Quarry Shareholders</h4>
-  <div class="card-body">
-    <h6 class="card-title">
-      <span class="font-weight-bold">Participants: </span>45
-    </h6>
-    <a class="btn btn-warning" [routerLink]="['/voter-group']">View Voter Group</a>
-  </div>
-</div>
-<div class="card shadow mb-5 bg-white rounded">
-  <h4 class="card-header">Quarry Board of Directors</h4>
-  <div class="card-body">
-    <h6 class="card-title">
-      <span class="font-weight-bold">Participants: </span>6
-    </h6>
-    <a class="btn btn-warning" [routerLink]="['/voter-group']">View Voter Group</a>
-  </div>
-</div>
+<!--<div class="card shadow mb-5 bg-white rounded">-->
+  <!--<h4 class="card-header">Quarry Shareholders</h4>-->
+  <!--<div class="card-body">-->
+    <!--<h6 class="card-title">-->
+      <!--<span class="font-weight-bold">Participants: </span>45-->
+    <!--</h6>-->
+    <!--<a class="btn btn-warning" [routerLink]="['/voter-group']">View Voter Group</a>-->
+  <!--</div>-->
+<!--</div>-->
+<!--<div class="card shadow mb-5 bg-white rounded">-->
+  <!--<h4 class="card-header">Quarry Board of Directors</h4>-->
+  <!--<div class="card-body">-->
+    <!--<h6 class="card-title">-->
+      <!--<span class="font-weight-bold">Participants: </span>6-->
+    <!--</h6>-->
+    <!--<a class="btn btn-warning" [routerLink]="['/voter-group']">View Voter Group</a>-->
+  <!--</div>-->
+<!--</div>-->
