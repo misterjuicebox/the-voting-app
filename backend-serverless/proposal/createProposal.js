@@ -8,9 +8,10 @@ exports.main = async function main(event) {
     TableName: 'dev-theVotingApp',
     Item: {
       pk: uuid.v1(),
-      sk: 'voterGroup',
+      sk: 'proposal',
       title: data.title,
       description: data.description,
+      voterGroupId: data.voterGroupId,
       createDate: Date.now()
     }
   };

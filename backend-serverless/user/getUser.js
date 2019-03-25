@@ -1,30 +1,24 @@
 let AWS = require('aws-sdk');
 
-
-// import * as dynamoDbLib from "../libs/dynamodb-lib";
-
 exports.main = async function main(event, context, callback) {
   console.log(event);
   console.log('successfully hit get user');
 
   const data = JSON.parse(event.body);
   const params = {
-    TableName: 'dev-users',
-    IndexName: "emailUsersIdx",
-    KeyConditionExpression: "email = :email",
-    ExpressionAttributeValues: {
-      ":email": data.email
-    },
-    Projection: {
-      ProjectionType: "ALL",
+    TableName: 'dev-theVotingApp',
+    Key: {
+      // userId: data.userId,
+      pk: data.email,
+      sk: 'user'
     }
   };
 
   try {
-    const result = await call("query", params)
+    const result = await call("get", params);
     console.log(result);
     // Return to Amazon Cognito
-    callback(null, buildResponse(200, result.Items));
+    callback(null, buildResponse(200, result.Item));
     // return success(params.Item);
   } catch (e) {
     // Return to Amazon Cognito

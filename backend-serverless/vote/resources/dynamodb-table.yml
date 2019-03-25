@@ -1,28 +1,28 @@
 Resources:
-  VoterGroupsTable:
+  Votes:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: ${self:custom.tableName}
       AttributeDefinitions:
-      - AttributeName: voterGroupId
+      - AttributeName: voteId
         AttributeType: S
-      - AttributeName: userId
+      - AttributeName: proposalId
         AttributeType: S
       KeySchema:
-      - AttributeName: voterGroupId
+      - AttributeName: voteId
         KeyType: HASH
-      - AttributeName: userId
+      - AttributeName: proposalId
         KeyType: RANGE
       # Set the capacity based on the stage
       ProvisionedThroughput:
         ReadCapacityUnits: ${self:custom.tableThroughput}
         WriteCapacityUnits: ${self:custom.tableThroughput}
       GlobalSecondaryIndexes:
-      - IndexName: userVoterGroupIdx
+      - IndexName: proposalVoteIdx
         KeySchema:
-        - AttributeName: userId
+        - AttributeName: proposalId
           KeyType: HASH
-        - AttributeName: voterGroupId
+        - AttributeName: voteId
           KeyType: RANGE
 
         Projection:

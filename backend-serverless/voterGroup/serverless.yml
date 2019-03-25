@@ -1,24 +1,15 @@
 # NOTE: update this with your service name
 service: voterGroup
 
-# Use the serverless-webpack plugin to transpile ES6
-plugins:
-  - serverless-webpack
-  - serverless-offline
-
 # serverless-webpack configuration
 # Enable auto-packing of external modules
 custom:
-  webpack:
-    webpackConfig: ./webpack.config.js
-    includeModules: true
-
   # Our stage is based on what is passed in when running serverless
   # commands. Or fallsback to what we have set in the provider section.
   stage: ${opt:stage, self:provider.stage}
   # Set the table name here so we can use it while testing locally
   tableName: ${self:custom.stage}-voterGroups
-#  tableName2: ${self:custom.stage}-userVoterGroup
+  #  tableName2: ${self:custom.stage}-userVoterGroup
   # Set our DynamoDB throughput for prod and all other non-prod stages.
   tableThroughputs:
     prod: 5
@@ -35,13 +26,13 @@ provider:
   # the following line. Also, make sure to not
   # commit your env.yml.
   #
-#  environment: ${file(env.yml):${self:provider.stage}}
+  #  environment: ${file(env.yml):${self:provider.stage}}
 
-#   These environment variables are made available to our functions
-#   under process.env.
+  #   These environment variables are made available to our functions
+  #   under process.env.
   environment:
-    tableName: ${self:custom.tableName1}
-#    tableName2: ${self:custom.tableName2}
+    tableName: ${self:custom.tableName}
+  #    tableName2: ${self:custom.tableName2}
 
   iamRoleStatements:
   - Effect: Allow
@@ -54,8 +45,8 @@ provider:
     - dynamodb:UpdateItem
     - dynamodb:DeleteItem
     - dynamodb:BatchGetItem
-#    # Restrict our IAM role permissions to
-#    # the specific table for the stage
+    #    # Restrict our IAM role permissions to
+    #    # the specific table for the stage
     Resource:
     - "Fn::GetAtt": [ VoterGroupsTable, Arn ]
     - Fn::Join:
@@ -89,6 +80,15 @@ functions:
     events:
     - http:
         path: addVoterToGroup
+        method: post
+        cors: true
+        authorizer: aws_iam
+
+  updateVoterGroup:
+    handler: updateVoterGroup.main
+    events:
+    - http:
+        path: updateVoterGroup
         method: post
         cors: true
         authorizer: aws_iam

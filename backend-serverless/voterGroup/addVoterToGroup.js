@@ -1,26 +1,41 @@
-import uuid from "uuid";
-import * as dynamoDbLib from "../libs/dynamodb-lib";
-import { success, failure } from "../libs/response-lib";
+let AWS = require('aws-sdk');
 
-export async function main(event, context) {
-  console.log(event.requestContext);
+exports.main = async function main(event, context) {
   const data = JSON.parse(event.body);
   console.log(event);
   const params = {
-    TableName: process.env.tableName1,
+    TableName: 'dev-theVotingApp',
     Item: {
-      userId: data.userId,
-      voterGroupId: data.voterGroupId,
-      name: data.name,
-      description: data.description,
-      createdAt: Date.now()
+      pk: data.voterGroupId,
+      // sk: 'userVoterGroup',
+      sk: data.email,
+      createDate: Date.now()
     }
   };
 
   try {
-    await dynamoDbLib.call("put", params);
-    return success(params.Item);
+    await call("put", params);
+    console.log(params.Item);
+    return buildResponse(200, params.Item);
   } catch (e) {
-    return failure({ status: false });
+    console.log(e);
+    return buildResponse(500, { status: false });
   }
+};
+
+function call(action, params) {
+  const dynamoDb = new AWS.DynamoDB.DocumentClient();
+
+  return dynamoDb[action](params).promise();
+}
+
+function buildResponse(statusCode, body) {
+  return {
+    statusCode: statusCode,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true
+    },
+    body: JSON.stringify(body)
+  };
 }

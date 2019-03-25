@@ -1,4 +1,5 @@
 let AWS = require('aws-sdk');
+let uuid = require("uuid");
 
 exports.main = async function main(event, context) {
   const data = JSON.parse(event.body);
@@ -6,9 +7,11 @@ exports.main = async function main(event, context) {
   const params = {
     TableName: 'dev-theVotingApp',
     Item: {
-      pk: data.voterGroupId,
-      // sk: 'userVoterGroup',
-      sk: data.email,
+      pk: data.email,
+      sk: data.proposalId,
+      voteId: uuid.v1(),
+      voterGroupId: data.voterGroupId,
+      vote: data.vote,
       createDate: Date.now()
     }
   };
