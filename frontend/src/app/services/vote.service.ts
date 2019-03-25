@@ -8,17 +8,7 @@ import {API} from 'aws-amplify';
 
 
 @Injectable()
-export class ProposalService {
-
-  private _selectedProposal: any = {};
-
-  get selectedProposal(): any {
-    return this._selectedProposal;
-  }
-
-  set selectedProposal(value: any) {
-    this._selectedProposal = value;
-  }
+export class VoteService {
 
   constructor(
     protected http: HttpClient,
@@ -27,8 +17,8 @@ export class ProposalService {
 
   } // constructor()
 
-  createProposal (params: any): Observable<any> {
-    return fromPromise(API.post("createProposal", "/createProposal", {body: params}))
+  castVote (params: any): Observable<any> {
+    return fromPromise(API.post("castVote", "/castVote", {body: params}))
       .map(
         result => {
           return result;
@@ -40,8 +30,8 @@ export class ProposalService {
       );
   }
 
-  addProposalToGroup (params: any): Observable<any> {
-    return fromPromise(API.post("addProposalToGroup", "/addProposalToGroup", {body: params}))
+  getVote (params?: any): Observable<any> {
+    return fromPromise(API.post("getVote", "/getVote", {body: params}))
       .map(
         result => {
           return result;
@@ -53,21 +43,8 @@ export class ProposalService {
       );
   }
 
-  getProposals (params?: any): Observable<any> {
-    return fromPromise(API.post("getProposals", "/getProposals", {body: params}))
-      .map(
-        result => {
-          return result;
-        },
-        error => {
-          // return and handle error
-          console.log(error);
-        }
-      );
-  }
-
-  getProposal (params?: any): Observable<any> {
-    return fromPromise(API.post("getProposal", "/getProposal", {body: params}))
+  getVotes (params?: any): Observable<any> {
+    return fromPromise(API.post("getVotes", "/getVotes", {body: params}))
       .map(
         result => {
           return result;

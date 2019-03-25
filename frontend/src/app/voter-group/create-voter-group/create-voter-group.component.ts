@@ -14,6 +14,8 @@ export class CreateVoterGroupComponent implements OnInit {
   userInfo: any = {};
   voterGroup: any = {};
 
+  email: string = '';
+
   constructor(private voterGroupService: VoterGroupService,
               private authService: AuthService) { }
 
@@ -22,27 +24,27 @@ export class CreateVoterGroupComponent implements OnInit {
   }
 
   getCognitoUserInfo() {
-    this.authService.getCognitoUserInfo()
-      .subscribe(result => {
-        this.userInfo = result;
-        console.log(this.userInfo);
-      })
+    this.userInfo = this.authService.getUserInfo();
   }
 
   createVoterGroup(voterGroup: any) {
-    let params = {userId: this.userInfo.username, name: voterGroup.name, description: voterGroup.description};
-    debugger;
+    let params = {title: voterGroup.title, description: voterGroup.description};
     this.voterGroupService.createVoterGroup(params)
       .subscribe(result => {
-        if (result.voterGroupId) {
-          let params = {voterGroupId: result.voterGroupId};
-          // this.voterGroupService.createUserVoterGroup(params)
-          //   .subscribe(result => {
-          //     // redirect to somewhere...
-          //     console.log(result)});
+        if (result.pk) {
+          this.addVoterToGroup(result.pk);
         }
-        console.log(result)
     });
+  }
+
+  addVoterToGroup(voterGroupId) {
+    let params = {
+      email: this.userInfo.email,
+      voterGroupId: voterGroupId
+    };
+    this.voterGroupService.addVoterToGroup(params)
+      .subscribe(result => {
+      })
   }
 
 }

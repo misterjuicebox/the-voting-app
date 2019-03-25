@@ -1,27 +1,31 @@
-<form>
-  <h1>Login to Vote</h1>
-  <div class="form-group">
-    <label for="loginEmail">Email</label>
-    <input type="email"
-           name="email"
-           class="form-control"
-           id="loginEmail"
-           [(ngModel)]="user.email"
-           aria-describedby="emailHelp"
-           placeholder="Enter email">
-  </div>
-  <div class="form-group">
-    <label for="loginPassword">Password</label>
-    <input type="password"
-           name="password"
-           class="form-control"
-           id="loginPassword"
-           [(ngModel)]="user.password"
-           placeholder="Password">
-  </div>
-  <button type="button"
-          class="btn btn-primary"
-          (click)="login(user)">
-    Submit
-  </button>
-</form>
+<app-loading *ngIf="busy"></app-loading>
+
+<div *ngIf="!busy">
+  <form>
+    <h1>Login to Vote</h1>
+    <div class="form-group">
+      <label for="loginEmail">Email</label>
+      <input type="email"
+             name="email"
+             class="form-control"
+             id="loginEmail"
+             [(ngModel)]="user.email"
+             aria-describedby="emailHelp"
+             placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="loginPassword">Password</label>
+      <input type="password"
+             name="password"
+             class="form-control"
+             id="loginPassword"
+             [(ngModel)]="user.password"
+             placeholder="Password">
+    </div>
+    <button type="button"
+            class="btn btn-primary"
+            (click)="login(user)">
+      Submit
+    </button>
+  </form>
+</div>

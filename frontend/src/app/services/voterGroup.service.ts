@@ -17,12 +17,10 @@ export class VoterGroupService {
   private _selectedVoterGroup: any = {};
 
   get selectedVoterGroup(): any {
-    debugger;
     return this._selectedVoterGroup;
   }
 
   set selectedVoterGroup(value: any) {
-    debugger;
     this._selectedVoterGroup = value;
   }
 
@@ -52,7 +50,6 @@ export class VoterGroupService {
     return fromPromise(API.post("createVoterGroup", "/createVoterGroup", {body: params}))
       .map(
         result => {
-          debugger;
           return result;
         },
         error => {
@@ -66,7 +63,6 @@ export class VoterGroupService {
     return fromPromise(API.post("addVoterToGroup", "/addVoterToGroup", {body: params}))
       .map(
         result => {
-          debugger;
           return result;
         },
         error => {
@@ -75,11 +71,24 @@ export class VoterGroupService {
         }
       );
   }
+
+  updateVoterGroup (params: any): Observable<any> {
+    return fromPromise(API.post("updateVoterGroup", "/updateVoterGroup", {body: params}))
+      .map(
+        result => {
+          return result;
+        },
+        error => {
+          // return and handle error
+          console.log(error);
+        }
+      );
+  }
+
   getVoterGroups (params?: any): Observable<any> {
     return fromPromise(API.post("getVoterGroups", "/getVoterGroups", {body: params}))
       .map(
         result => {
-          debugger;
           return result;
         },
         error => {
@@ -93,7 +102,6 @@ export class VoterGroupService {
     return fromPromise(API.post("createUserVoterGroup", "/createUserVoterGroup", {body: params}))
       .map(
         result => {
-          debugger;
           console.log(result);
           return result;
         },
@@ -106,7 +114,6 @@ export class VoterGroupService {
 
   createVG (params: any): Observable<any> {
     let headers = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
-    debugger;
     return this.http.post(this.API_URL + '/createVoterGroup', JSON.stringify(params), headers)
       .pipe(
         catchError(err => {

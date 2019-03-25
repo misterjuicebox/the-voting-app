@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
+import {UtilitiesService} from '../services/utilities.service';
 
 @Component({
   selector: 'app-login',
@@ -10,16 +12,40 @@ export class LoginComponent implements OnInit {
 
   user: any = {};
 
-  constructor(private authService: AuthService) { }
+  busy = false;
+
+  isEmpty = UtilitiesService.isEmpty;
+
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
   login(user: any) {
-    debugger;
-    this.authService.signIn(user.email, user.password).subscribe(result => {
-      this.authService.getCognitoUserInfo();
+    this.busy = true;
+
+    this.authService.signIn(user.email, user.password)
+      .subscribe(result => {
+        debugger;
+        console.log(result);
+
+        if (!this.isEmpty(result.userDataKey)) {
+          this.getUserInfo();
+        } else {
+          this.busy = false;
+        }
     })
+  }
+
+  getUserInfo() {
+    this.authService.getCognitoUserInfo()
+      .subscribe(result => {
+        debugger;
+        if (result) {
+          this.router.navigate(['/dashboard']);
+        }
+      })
   }
 
 }

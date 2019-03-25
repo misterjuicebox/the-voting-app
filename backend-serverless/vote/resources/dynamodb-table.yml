@@ -2,7 +2,7 @@ Resources:
   VoterGroupsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: ${self:custom.tableName1}
+      TableName: ${self:custom.tableName}
       AttributeDefinitions:
       - AttributeName: voterGroupId
         AttributeType: S
@@ -26,30 +26,8 @@ Resources:
           KeyType: RANGE
 
         Projection:
-#          NonKeyAttributes:
-#          - Album
           ProjectionType: ALL
         # Set the capacity based on the stage
         ProvisionedThroughput:
           ReadCapacityUnits: ${self:custom.tableThroughput}
           WriteCapacityUnits: ${self:custom.tableThroughput}
-
-
-#  UserVoterGroupTable:
-#    Type: AWS::DynamoDB::Table
-#    Properties:
-#      TableName: ${self:custom.tableName2}
-#      AttributeDefinitions:
-#      - AttributeName: voterGroupId
-#        AttributeType: S
-#      - AttributeName: userId
-#        AttributeType: S
-#      KeySchema:
-#      - AttributeName: voterGroupId
-#        KeyType: HASH
-#      - AttributeName: userId
-#        KeyType: RANGE
-#      # Set the capacity based on the stage
-#      ProvisionedThroughput:
-#        ReadCapacityUnits: ${self:custom.tableThroughput}
-#        WriteCapacityUnits: ${self:custom.tableThroughput}

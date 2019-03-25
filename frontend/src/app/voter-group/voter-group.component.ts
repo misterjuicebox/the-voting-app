@@ -16,27 +16,28 @@ export class VoterGroupComponent implements OnInit {
 
   ngOnInit() {
     this.voterGroup = this.voterGroupService.selectedVoterGroup;
-    console.log(this.voterGroup);
-    debugger;
   }
 
   inviteUser(newVoter: any) {
-    console.log(newVoter);
     this.authService.getUser({email: newVoter.email})
       .subscribe(result => {
-        console.log(result);
         let params = {
-          userId: result.userId,
-          voterGroupId: this.voterGroup.voterGroupId,
-          name: this.voterGroup.name,
-          description: this.voterGroup.description
-        }
+          email: newVoter.email,
+          voterGroupId: this.voterGroup.pk,
+        };
         this.addVoterToGroup(params);
       })
   }
 
   addVoterToGroup(params: any) {
     this.voterGroupService.addVoterToGroup(params)
+      .subscribe(result => {
+        console.log(result);
+      })
+  }
+
+  updateVoterGroup(params: any) {
+    this.voterGroupService.updateVoterGroup(params)
       .subscribe(result => {
         console.log(result);
       })

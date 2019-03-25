@@ -6,7 +6,7 @@ import {CreateProposalComponent} from './create-proposal/create-proposal.compone
 const routes: Routes = [
     {path: '', component: ProposalComponent},
     {path: 'create', component: CreateProposalComponent},
-    {path: 'id', component: ProposalComponent},
+    {path: ':proposalId/:voterGroupId', component: ProposalComponent},
 ];
 
 @NgModule({

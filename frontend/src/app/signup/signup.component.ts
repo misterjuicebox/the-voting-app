@@ -54,7 +54,6 @@ export class SignupComponent implements OnInit {
     };
 
     this.authService.signUp(params).subscribe(result => {
-      debugger;
       this.showConfirmation = true;
       console.log(result)
     },

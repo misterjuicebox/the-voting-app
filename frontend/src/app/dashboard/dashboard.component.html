@@ -1,11 +1,16 @@
 <h2>Your Ballots</h2>
-<div class="card shadow mb-5 bg-white rounded">
-  <h4 class="card-header">Increase Total Number of Shares</h4>
+<div *ngFor="let proposal of proposals" class="card shadow mb-5 bg-white rounded">
+  <h4 class="card-header">{{proposal.title}}</h4>
   <div class="card-body">
     <h6 class="card-title">
-      <span class="font-weight-bold">Poll Closes: </span>April 1, 2019
+      {{proposal.description}}
     </h6>
-    <a [routerLink]="['/proposal/id']" class="btn btn-warning">Vote Now</a>
+    <!--<a class="btn btn-warning" [routerLink]="['/proposal/' + proposal.pk]">View Proposal</a>-->
+    <button type="button"
+            class="btn btn-warning"
+            (click)="viewProposal(proposal)">
+      View Proposal
+    </button>
   </div>
 </div>
 

@@ -1,19 +1,19 @@
-<h1>Increase Total Number of Shares</h1>
+<h1>{{proposal.title}}</h1>
 
-<p>This proposal will increase the total number of shares at the Quarry from 800 to 830.
-We have decided to do this because we purchased another 10 acres valued at $30,000, and in order to pay for it would like to increase the total number of shares by the equivalent value.
-</p>
+<p>{{proposal.description}}</p>
 
-<div class="row">
+<div *ngIf="!vote.sk" class="row">
   <div class="col-sm-6 mb-2">
     <button type="button"
-            class="btn btn-lg btn-success">
+            class="btn btn-lg btn-success"
+            (click)="castVote(true)">
       Approve
     </button>
   </div>
   <div class="col-sm-6">
     <button type="button"
-            class="btn btn-lg btn-danger">
+            class="btn btn-lg btn-danger"
+            (click)="castVote(false)">
       Decline
     </button>
   </div>

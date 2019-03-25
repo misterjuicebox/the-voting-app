@@ -29,27 +29,57 @@ export class AppComponent {
         endpoints: [
           {
             name: "createVoterGroup",
-            endpoint: 'https://3ybk8299p4.execute-api.us-east-1.amazonaws.com/dev',
-            region: 'us-east-1'
-          },
-          {
-            name: "createUserVoterGroup",
-            endpoint: 'https://3ybk8299p4.execute-api.us-east-1.amazonaws.com/dev',
+            endpoint: 'https://id5sul3r1e.execute-api.us-east-1.amazonaws.com/dev',
             region: 'us-east-1'
           },
           {
             name: "getVoterGroups",
-            endpoint: 'https://3ybk8299p4.execute-api.us-east-1.amazonaws.com/dev',
+            endpoint: 'https://id5sul3r1e.execute-api.us-east-1.amazonaws.com/dev',
             region: 'us-east-1'
           },
           {
             name: "addVoterToGroup",
-            endpoint: 'https://3ybk8299p4.execute-api.us-east-1.amazonaws.com/dev',
+            endpoint: 'https://id5sul3r1e.execute-api.us-east-1.amazonaws.com/dev',
+            region: 'us-east-1'
+          },
+          {
+            name: "updateVoterGroup",
+            endpoint: 'https://id5sul3r1e.execute-api.us-east-1.amazonaws.com/dev',
             region: 'us-east-1'
           },
           {
             name: "getUser",
             endpoint: 'https://ril7jqatdc.execute-api.us-east-1.amazonaws.com/dev',
+            region: 'us-east-1'
+          },
+          {
+            name: "createProposal",
+            endpoint: 'https://tjntc3twq1.execute-api.us-east-1.amazonaws.com/dev',
+            region: 'us-east-1'
+          },
+          {
+            name: "addProposalToGroup",
+            endpoint: 'https://tjntc3twq1.execute-api.us-east-1.amazonaws.com/dev',
+            region: 'us-east-1'
+          },
+          {
+            name: "getProposals",
+            endpoint: 'https://tjntc3twq1.execute-api.us-east-1.amazonaws.com/dev',
+            region: 'us-east-1'
+          },
+          {
+            name: "getProposal",
+            endpoint: 'https://tjntc3twq1.execute-api.us-east-1.amazonaws.com/dev',
+            region: 'us-east-1'
+          },
+          {
+            name: "castVote",
+            endpoint: 'https://hpwedhgb06.execute-api.us-east-1.amazonaws.com/dev',
+            region: 'us-east-1'
+          },
+          {
+            name: "getVote",
+            endpoint: 'https://hpwedhgb06.execute-api.us-east-1.amazonaws.com/dev',
             region: 'us-east-1'
           }
         ]
@@ -58,3 +88,4 @@ export class AppComponent {
   }
 
 }
+

@@ -4,20 +4,20 @@
     <label for="voterGroup">Select Voter Group</label>
     <select class="form-control" id="voterGroup" name="voterGroup" [(ngModel)]="proposal.voterGroupId">
       <option *ngFor="let voterGroup of voterGroups"
-              [value]="voterGroup.voterGroupId">
-        {{voterGroup.name}}
+              [value]="voterGroup.pk">
+        {{voterGroup.title}}
       </option>
     </select>
   </div>
   <div class="form-group">
-    <label for="proposalName">Name</label>
+    <label for="proposalTitle">Title</label>
     <input type="text"
-           name="name"
+           name="title"
            class="form-control"
-           id="proposalName"
-           aria-describedby="nameHelp"
-           [(ngModel)]="proposal.name"
-           placeholder="Enter name of the proposal">
+           id="proposalTitle"
+           aria-describedby="titleHelp"
+           [(ngModel)]="proposal.title"
+           placeholder="Enter title of the proposal">
   </div>
   <div class="form-group">
     <label for="proposalDescription">Description</label>
