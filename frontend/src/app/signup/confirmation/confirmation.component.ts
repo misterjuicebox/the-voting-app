@@ -15,7 +15,7 @@ export class ConfirmationComponent implements OnInit {
   @Input() user: any = {};
 
   busy = false;
-  
+
   isEmpty = UtilitiesService.isEmpty;
 
   constructor(private authService: AuthService,

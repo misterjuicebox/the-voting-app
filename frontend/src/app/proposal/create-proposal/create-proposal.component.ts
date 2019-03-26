@@ -19,19 +19,16 @@ export class CreateProposalComponent implements OnInit {
 
 
   ngOnInit() {
-    this.authService.getCognitoUserInfo()
-      .subscribe(result => {
-        this.userInfo = result;
-        console.log(this.userInfo);
-        this.getVoterGroups({email: this.userInfo.attributes.email});
-      })
+    this.userInfo = this.authService.getUserInfo();
+    this.getVoterGroups({email: this.userInfo.email});
   }
 
   getVoterGroups(params) {
     this.voterGroupService.getVoterGroups(params)
       .subscribe(result => {
         this.voterGroups = result;
-        console.log(result)
+      }, error => {
+        console.log(error);
       });
   }
 
@@ -42,7 +39,8 @@ export class CreateProposalComponent implements OnInit {
         if (result.pk) {
           this.addProposalToGroup(result.pk);
         }
-        console.log(result)
+      }, error => {
+        console.log(error);
       });
   }
 
@@ -53,7 +51,9 @@ export class CreateProposalComponent implements OnInit {
     };
     this.proposalService.addProposalToGroup(params)
       .subscribe(result => {
-        console.log(result);
+
+      }, error => {
+        console.log(error);
       })
   }
 

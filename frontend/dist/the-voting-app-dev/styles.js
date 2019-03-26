@@ -557,7 +557,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/mj/projects/the-voting-app-dev/src/styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! /Users/mj/projects/the-voting-app-dev/frontend/src/styles.css */"./src/styles.css");
 
 
 /***/ })

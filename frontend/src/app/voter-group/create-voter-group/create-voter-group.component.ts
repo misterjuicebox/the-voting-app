@@ -34,7 +34,9 @@ export class CreateVoterGroupComponent implements OnInit {
         if (result.pk) {
           this.addVoterToGroup(result.pk);
         }
-    });
+    }, error => {
+        console.log(error)
+      });
   }
 
   addVoterToGroup(voterGroupId) {
@@ -44,6 +46,8 @@ export class CreateVoterGroupComponent implements OnInit {
     };
     this.voterGroupService.addVoterToGroup(params)
       .subscribe(result => {
+      }, error => {
+        console.log(error);
       })
   }
 
