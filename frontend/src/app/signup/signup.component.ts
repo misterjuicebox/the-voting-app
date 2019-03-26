@@ -22,28 +22,6 @@ export class SignupComponent implements OnInit {
     const firstName = user.firstName;
     const lastName = user.lastName;
 
-    // const attributeList = [];
-    //
-    // const userEmail = {
-    //   Name : 'email',
-    //   Value : email
-    // };
-    // const userFirstName = {
-    //   Name : 'firstName',
-    //   Value : firstName
-    // };
-    // const userLastName = {
-    //   Name : 'lastName',
-    //   Value : lastName
-    // };
-    // const attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(userEmail);
-    // const attributeFirstName = new AmazonCognitoIdentity.CognitoUserAttribute(userFirstName);
-    // const attributeLastName = new AmazonCognitoIdentity.CognitoUserAttribute(userLastName);
-    //
-    // attributeList.push(attributeEmail);
-    // attributeList.push(attributeFirstName);
-    // attributeList.push(attributeLastName);
-
     let params = {
       username: email,
       password: password,
@@ -55,10 +33,8 @@ export class SignupComponent implements OnInit {
 
     this.authService.signUp(params).subscribe(result => {
       this.showConfirmation = true;
-      console.log(result)
-    },
-      error => {
+      }, error => {
         console.log(error);
-      });
+    });
   }
 }

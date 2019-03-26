@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   proposals: any = [];
   userInfo: any = {};
 
+  busy = true;
+
   constructor(private voterGroupService: VoterGroupService,
               private authService: AuthService,
               private proposalService: ProposalService,
@@ -31,8 +33,13 @@ export class DashboardComponent implements OnInit {
         if (result.length > 0) {
           this.voterGroups = result;
           this.getProposals();
+        } else {
+          this.busy = false;
         }
-        console.log(result)
+      }, error => {
+        // todo handle error
+        this.busy = false;
+        console.log(error);
       });
   }
 
@@ -49,7 +56,11 @@ export class DashboardComponent implements OnInit {
         if (result.length > 0) {
           this.proposals = result;
         }
-        console.log(result)
+        this.busy = false;
+      }, error => {
+        // todo handle error
+        console.log(error)
+        this.busy = false;
       });
   }
 
@@ -59,7 +70,6 @@ export class DashboardComponent implements OnInit {
   }
 
   viewProposal(proposal: any) {
-    debugger;
     this.proposalService.selectedProposal = proposal;
     this.router.navigate(['/proposal/' + proposal.pk + '/' + proposal.voterGroupId]);
   }

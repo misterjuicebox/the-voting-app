@@ -27,24 +27,30 @@ export class LoginComponent implements OnInit {
 
     this.authService.signIn(user.email, user.password)
       .subscribe(result => {
-        debugger;
-        console.log(result);
-
         if (!this.isEmpty(result.userDataKey)) {
           this.getUserInfo();
         } else {
           this.busy = false;
         }
-    })
+      }, error => {
+          // todo handle error
+          console.log(error);
+          this.busy = false;
+        })
   }
 
   getUserInfo() {
     this.authService.getCognitoUserInfo()
       .subscribe(result => {
-        debugger;
         if (result) {
           this.router.navigate(['/dashboard']);
+        } else {
+          this.busy = false;
         }
+      }, error => {
+        // todo handle error
+        console.log(error);
+        this.busy = false;
       })
   }
 

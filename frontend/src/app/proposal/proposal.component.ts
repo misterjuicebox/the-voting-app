@@ -16,6 +16,8 @@ export class ProposalComponent implements OnInit {
 
   vote: any = {};
 
+  busy = true;
+
   isEmpty = UtilitiesService.isEmpty;
 
   constructor(private proposalService: ProposalService,
@@ -51,6 +53,8 @@ export class ProposalComponent implements OnInit {
       .subscribe(result => {
         this.proposal = result;
         this.getVote();
+      }, error => {
+        this.busy = false;
       });
   }
 
@@ -58,17 +62,20 @@ export class ProposalComponent implements OnInit {
     const params = {
       email: this.userInfo.email,
       proposalId: this.proposal.pk
-    }
+    };
     this.voteService.getVote(params)
       .subscribe(result => {
         if (!this.isEmpty(result.pk)) {
           this.vote = result;
         }
+        this.busy = false;
+      }, error => {
+        this.busy = false;
       });
   }
   castVote(vote) {
     const params = {
-      email: this.userInfo.attributes.email,
+      email: this.userInfo.email,
       proposalId: this.proposal.pk,
       voterGroupId: this.proposal.voterGroupId,
       vote: vote
@@ -79,6 +86,8 @@ export class ProposalComponent implements OnInit {
           this.vote = result;
         }
         console.log(result)
+      }, error => {
+        // todo handle error
       });
   }
 }

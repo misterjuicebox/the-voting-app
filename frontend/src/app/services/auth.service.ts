@@ -41,42 +41,24 @@ export class AuthService {
 
   /** confirm code */
   public confirmSignUp(email, code): Observable<any> {
-    return fromPromise(Auth.confirmSignUp(email, code));
+    return fromPromise(Auth.confirmSignUp(email, code))
+      .pipe(
+        tap(() => {
+          // this.getCognitoUserInfo();
+        }, error => {
+          // handle error
+          console.log(error);
+        })
+      );
   }
 
   /** signin */
   public signIn(email, password): Observable<any> {
     return fromPromise(Auth.signIn(email, password))
-      // .map(
-      //   result => {
-      //     debugger;
-      //     // this.getCognitoUserInfo();
-      //     return result;
-      //   },
-      //   error => {
-      //     debugger;
-      //     // return and handle error
-      //     console.log(error);
-      //   }
-      // );
-      // .pipe(
-      //   map(result => {
-      //     debugger;
-      //     console.log(result);
-      //     this.setUserInfo();
-      //   }),
-      //   catchError(error => {
-      //     debugger;
-      //     console.log(error);
-      //   })
-      // );
       .pipe(
-        tap((result) => {
-          debugger;
-          // console.log('logged in');
-          // this.setUserInfo();
+        tap(() => {
         }, error => {
-          debugger;
+          // handle error
           console.log(error)
         })
       );
