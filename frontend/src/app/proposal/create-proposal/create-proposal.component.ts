@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProposalService} from '../../services/proposal.service';
 import {VoterGroupService} from '../../services/voterGroup.service';
 import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-proposal',
@@ -15,7 +16,8 @@ export class CreateProposalComponent implements OnInit {
 
   constructor(private proposalService: ProposalService,
               private voterGroupService: VoterGroupService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
 
   ngOnInit() {
@@ -51,7 +53,7 @@ export class CreateProposalComponent implements OnInit {
     };
     this.proposalService.addProposalToGroup(params)
       .subscribe(result => {
-
+        this.router.navigate(['/dashboard']);
       }, error => {
         console.log(error);
       })

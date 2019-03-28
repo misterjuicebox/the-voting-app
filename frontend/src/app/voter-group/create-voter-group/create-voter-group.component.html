@@ -1,7 +1,6 @@
 <form>
-  <h1>Create a Voter Group</h1>
+  <h3>Create a Voter Group</h3>
   <div class="form-group">
-    <label for="voterGroupTitle">Title</label>
     <input type="text"
            name="title"
            class="form-control"
@@ -31,6 +30,8 @@
       <button class="btn btn-primary" type="button">Invite Voter</button>
     </div>
   </div>
+  <small *ngIf="addVoter" id="inviteHelp" class="form-text text-muted mb-2">Invite must be sent to existing user of the voting app. We're a work in progress here ;)</small>
+
   <div class="row p-0">
     <div class="col-sm-4 mb-2">
       <button type="button"

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProposalService} from '../services/proposal.service';
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {VoteService} from '../services/vote.service';
 import {UtilitiesService} from '../services/utilities.service';
@@ -23,7 +23,8 @@ export class ProposalComponent implements OnInit {
   constructor(private proposalService: ProposalService,
               private route: ActivatedRoute,
               private voteService: VoteService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
     this.userInfo = this.authService.getUserInfo();
@@ -84,6 +85,7 @@ export class ProposalComponent implements OnInit {
       .subscribe(result => {
         if (result.sk) {
           this.vote = result;
+          this.router.navigate(['/dashboard']);
         }
         console.log(result)
       }, error => {

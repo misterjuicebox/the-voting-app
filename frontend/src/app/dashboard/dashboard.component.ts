@@ -74,4 +74,12 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/proposal/' + proposal.pk + '/' + proposal.voterGroupId]);
   }
 
+  createVoterGroup() {
+    this.router.navigate(['/voter-group/create']);
+  }
+
+  createProposal() {
+    this.router.navigate(['/proposal/create']);
+  }
+
 }

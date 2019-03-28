@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {VoterGroupService} from '../../services/voterGroup.service';
 import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-voter-group',
@@ -17,7 +18,8 @@ export class CreateVoterGroupComponent implements OnInit {
   email: string = '';
 
   constructor(private voterGroupService: VoterGroupService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getCognitoUserInfo();
@@ -46,6 +48,7 @@ export class CreateVoterGroupComponent implements OnInit {
     };
     this.voterGroupService.addVoterToGroup(params)
       .subscribe(result => {
+        this.router.navigate(['/dashboard']);
       }, error => {
         console.log(error);
       })

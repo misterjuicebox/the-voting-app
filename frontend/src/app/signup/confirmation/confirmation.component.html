@@ -1,8 +1,8 @@
 <form>
-  <h1>Enter Confirmation</h1>
+  <h3>Enter Confirmation Code</h3>
+  <p>Do not close this page until you have entered the code sent via email.</p>
   <div class="form-group">
-    <label for="exampleInputEmail1">Confirmation Code</label>
-    <input [(ngModel)]="user.code" type="password" name="code" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <input [(ngModel)]="user.code" type="password" name="code" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter code">
   </div>
   <button type="button" (click)="submit(user)" class="btn btn-primary">Submit</button>
 </form>
