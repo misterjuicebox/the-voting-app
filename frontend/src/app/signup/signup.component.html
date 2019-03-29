@@ -1,20 +1,26 @@
-<form *ngIf="!showConfirmation">
-  <h3>Signup</h3>
-  <div class="form-group">
-    <input [(ngModel)]="user.email" type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <input [(ngModel)]="user.firstName" type="text" name="firstName" class="form-control" id="firstName" aria-describedby="firstNameHelp" placeholder="First Name">
-  </div>
-  <div class="form-group">
-    <input [(ngModel)]="user.lastName" type="text" name="lastName" class="form-control" id="lastName" aria-describedby="lastNameHelp" placeholder="Last Name">
-  </div>
-  <div class="form-group">
-    <input [(ngModel)]="user.password" type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    <small id="passwordHelp" class="form-text text-muted">Password must 8 characters and include upper and lowercase letters, a numer and a special character</small>
-  </div>
-  <button type="button" (click)="submit(user)" class="btn btn-primary">Submit</button>
-</form>
+<app-loading *ngIf="busy"></app-loading>
+
+<div *ngIf="!busy">
+  <form class="mb-2" *ngIf="!showConfirmation">
+    <h3>Signup</h3>
+    <div class="form-group">
+      <input [(ngModel)]="user.email" type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="user.firstName" type="text" name="firstName" class="form-control" id="firstName" aria-describedby="firstNameHelp" placeholder="First Name">
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="user.lastName" type="text" name="lastName" class="form-control" id="lastName" aria-describedby="lastNameHelp" placeholder="Last Name">
+    </div>
+    <div class="form-group">
+      <input [(ngModel)]="user.password" type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <small id="passwordHelp" class="form-text text-muted">Password must 8 characters and include upper and lowercase letters, a numer and a special character</small>
+    </div>
+    <button type="button" (click)="submit(user)" class="btn btn-primary">Submit</button>
+  </form>
+
+  <app-error-message *ngIf="error"></app-error-message>
+</div>
 
 <app-confirmation *ngIf="showConfirmation" [user]="user"></app-confirmation>

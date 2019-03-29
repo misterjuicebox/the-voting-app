@@ -104,7 +104,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = ".off-white-background {\n  background-color: #fdfdfd;\n}\n\n.vh-100 {\n  height: 100vh;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSx5QkFBeUI7QUFDM0I7O0FBRUE7RUFDRSxhQUFhO0FBQ2YiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5vZmYtd2hpdGUtYmFja2dyb3VuZCB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmZGZkZmQ7XG59XG5cbi52aC0xMDAge1xuICBoZWlnaHQ6IDEwMHZoO1xufVxuIl19 */"
 
 /***/ }),
 
@@ -115,7 +115,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-layout>\n  <router-outlet></router-outlet>\n</app-layout>\n"
+module.exports = "<div class=\"off-white-background vh-100\">\n  <app-layout>\n    <router-outlet></router-outlet>\n  </app-layout>\n</div>\n"
 
 /***/ }),
 
@@ -336,7 +336,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = ".padding-top-10vh {\n  padding-top: 10vh;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsaUJBQWlCO0FBQ25CIiwiZmlsZSI6InNyYy9hcHAvZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnBhZGRpbmctdG9wLTEwdmgge1xuICBwYWRkaW5nLXRvcDogMTB2aDtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -347,7 +347,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-loading *ngIf=\"busy\"></app-loading>\n\n<div *ngIf=\"!busy\">\n  <h2>Your Ballots</h2>\n  <div *ngFor=\"let proposal of proposals\" class=\"card shadow mb-5 bg-white rounded\">\n    <h4 class=\"card-header\">{{proposal.title}}</h4>\n    <div class=\"card-body\">\n      <h6 class=\"card-title\">\n        {{proposal.description}}\n      </h6>\n      <!--<a class=\"btn btn-warning\" [routerLink]=\"['/proposal/' + proposal.pk]\">View Proposal</a>-->\n      <button type=\"button\"\n              class=\"btn btn-warning\"\n              (click)=\"viewProposal(proposal)\">\n        View Proposal\n      </button>\n    </div>\n  </div>\n\n  <h2>Your Voting Groups</h2>\n\n\n  <div *ngFor=\"let voterGroup of voterGroups\" class=\"card shadow mb-5 bg-white rounded\">\n    <h4 class=\"card-header\">{{voterGroup.name}}</h4>\n    <div class=\"card-body\">\n      <h6 class=\"card-title\">\n        {{voterGroup.description}}\n      </h6>\n      <h6 class=\"card-title\">\n        <span class=\"font-weight-bold\">Participants: </span>23\n      </h6>\n      <button type=\"button\"\n              class=\"btn btn-warning\"\n              (click)=\"viewVoterGroup(voterGroup)\">\n        View Voter Group\n      </button>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<app-loading *ngIf=\"busy\"></app-loading>\n\n<div *ngIf=\"!busy && voterGroups.length == 0\" class=\"padding-top-10vh\">\n  <div class=\"row align-items-center padding-top-20vh\">\n    <div class=\"col-12 text-center\">\n      <h3>You need to create a voter group</h3>\n      <div>\n        <button class=\"btn btn-info btn-lg mr-2\" type=\"button\" (click)=\"createVoterGroup()\">Create Voter Group</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div *ngIf=\"!busy && proposals.length == 0\">\n  <div class=\"row align-items-center padding-top-20vh\">\n    <div class=\"col-12 text-center\">\n      <h3>Create a proposal</h3>\n      <div>\n        <button class=\"btn btn-success btn-lg\" type=\"button\" (click)=\"createProposal()\">Create Proposal</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n<div *ngIf=\"!busy\">\n  <div *ngIf=\"proposals?.length > 0\">\n    <h3>Your Proposals</h3>\n    <div *ngFor=\"let proposal of proposals\" class=\"card shadow mb-5 bg-white rounded\">\n      <h4 class=\"card-header\">{{proposal.title}}</h4>\n      <div class=\"card-body\">\n        <!--<a class=\"btn btn-warning\" [routerLink]=\"['/proposal/' + proposal.pk]\">View Proposal</a>-->\n        <button type=\"button\"\n                class=\"btn btn-warning\"\n                (click)=\"viewProposal(proposal)\">\n          View Proposal\n        </button>\n      </div>\n    </div>\n  </div>\n\n  <div *ngIf=\"voterGroups?.length > 0\">\n    <h2>Your Voting Groups</h2>\n    <div *ngFor=\"let voterGroup of voterGroups\" class=\"card shadow mb-5 bg-white rounded\">\n      <h4 class=\"card-header\">{{voterGroup.title}}</h4>\n      <div class=\"card-body\">\n        <h6 class=\"card-title\">\n          {{voterGroup.description}}\n        </h6>\n        <button type=\"button\"\n                class=\"btn btn-warning\"\n                (click)=\"viewVoterGroup(voterGroup)\">\n          View Voter Group\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -435,6 +435,12 @@ var DashboardComponent = /** @class */ (function () {
         this.proposalService.selectedProposal = proposal;
         this.router.navigate(['/proposal/' + proposal.pk + '/' + proposal.voterGroupId]);
     };
+    DashboardComponent.prototype.createVoterGroup = function () {
+        this.router.navigate(['/voter-group/create']);
+    };
+    DashboardComponent.prototype.createProposal = function () {
+        this.router.navigate(['/proposal/create']);
+    };
     DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-dashboard',
@@ -483,7 +489,7 @@ var AuthGuard = /** @class */ (function () {
         return this.auth.isAuthenticated()
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (loggedIn) {
             if (!loggedIn) {
-                _this.router.navigate(['/login']);
+                _this.router.navigate(['/']);
             }
         }));
     };
@@ -506,7 +512,7 @@ var AuthGuard = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".loading {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: #343a40;\n  z-index: 100;\n  opacity: 0.85;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9hZGluZy9sb2FkaW5nLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxlQUFlO0VBQ2YsTUFBTTtFQUNOLFNBQVM7RUFDVCxPQUFPO0VBQ1AsUUFBUTtFQUNSLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osYUFBYTtBQUNmIiwiZmlsZSI6InNyYy9hcHAvbG9hZGluZy9sb2FkaW5nLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9hZGluZyB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgdG9wOiAwO1xuICBib3R0b206IDA7XG4gIGxlZnQ6IDA7XG4gIHJpZ2h0OiAwO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzQzYTQwO1xuICB6LWluZGV4OiAxMDA7XG4gIG9wYWNpdHk6IDAuODU7XG59XG4iXX0= */"
+module.exports = ".loading {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: #343a40;\n  z-index: 100;\n  opacity: 0.85;\n}\n\n.padding-top-20vh {\n  padding-top: 20vh;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9hZGluZy9sb2FkaW5nLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxlQUFlO0VBQ2YsTUFBTTtFQUNOLFNBQVM7RUFDVCxPQUFPO0VBQ1AsUUFBUTtFQUNSLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osYUFBYTtBQUNmOztBQUVBO0VBQ0UsaUJBQWlCO0FBQ25CIiwiZmlsZSI6InNyYy9hcHAvbG9hZGluZy9sb2FkaW5nLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9hZGluZyB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgdG9wOiAwO1xuICBib3R0b206IDA7XG4gIGxlZnQ6IDA7XG4gIHJpZ2h0OiAwO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzQzYTQwO1xuICB6LWluZGV4OiAxMDA7XG4gIG9wYWNpdHk6IDAuODU7XG59XG5cbi5wYWRkaW5nLXRvcC0yMHZoIHtcbiAgcGFkZGluZy10b3A6IDIwdmg7XG59XG5cbiJdfQ== */"
 
 /***/ }),
 
@@ -517,7 +523,7 @@ module.exports = ".loading {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  lef
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"loading p-5\">\n  <h1>Loading...</h1>\n</div>\n"
+module.exports = "<div class=\"loading\">\n  <div class=\"row align-items-center padding-top-20vh\">\n    <div class=\"col-12 text-center\">\n      <h3 class=\"text-white\">Loading..</h3>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -573,7 +579,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-loading *ngIf=\"busy\"></app-loading>\n\n<div *ngIf=\"!busy\">\n  <form>\n    <h1>Login to Vote</h1>\n    <div class=\"form-group\">\n      <label for=\"loginEmail\">Email</label>\n      <input type=\"email\"\n             name=\"email\"\n             class=\"form-control\"\n             id=\"loginEmail\"\n             [(ngModel)]=\"user.email\"\n             aria-describedby=\"emailHelp\"\n             placeholder=\"Enter email\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"loginPassword\">Password</label>\n      <input type=\"password\"\n             name=\"password\"\n             class=\"form-control\"\n             id=\"loginPassword\"\n             [(ngModel)]=\"user.password\"\n             placeholder=\"Password\">\n    </div>\n    <button type=\"button\"\n            class=\"btn btn-primary\"\n            (click)=\"login(user)\">\n      Submit\n    </button>\n  </form>\n</div>\n"
+module.exports = "<app-loading *ngIf=\"busy\"></app-loading>\n\n<div *ngIf=\"!busy\">\n  <form>\n    <h3>Login</h3>\n    <div class=\"form-group\">\n      <input type=\"email\"\n             name=\"email\"\n             class=\"form-control\"\n             id=\"loginEmail\"\n             [(ngModel)]=\"user.email\"\n             aria-describedby=\"emailHelp\"\n             placeholder=\"Enter email\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"loginPassword\">Password</label>\n      <input type=\"password\"\n             name=\"password\"\n             class=\"form-control\"\n             id=\"loginPassword\"\n             [(ngModel)]=\"user.password\"\n             placeholder=\"Password\">\n    </div>\n    <button type=\"button\"\n            class=\"btn btn-primary\"\n            (click)=\"login(user)\">\n      Submit\n    </button>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -674,7 +680,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form name=\"createProposal\">\n  <h1>Create a Proposal</h1>\n  <div class=\"form-group\">\n    <label for=\"voterGroup\">Select Voter Group</label>\n    <select class=\"form-control\" id=\"voterGroup\" name=\"voterGroup\" [(ngModel)]=\"proposal.voterGroupId\">\n      <option *ngFor=\"let voterGroup of voterGroups\"\n              [value]=\"voterGroup.pk\">\n        {{voterGroup.title}}\n      </option>\n    </select>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"proposalTitle\">Title</label>\n    <input type=\"text\"\n           name=\"title\"\n           class=\"form-control\"\n           id=\"proposalTitle\"\n           aria-describedby=\"titleHelp\"\n           [(ngModel)]=\"proposal.title\"\n           placeholder=\"Enter title of the proposal\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"proposalDescription\">Description</label>\n    <textarea class=\"form-control\"\n              name=\"description\"\n              id=\"proposalDescription\"\n              [(ngModel)]=\"proposal.description\"\n              placeholder=\"Describe your proposal\"\n              rows=\"3\">\n    </textarea>\n  </div>\n  <div class=\"custom-file mb-3\">\n    <input type=\"file\"\n           class=\"custom-file-input\"\n           id=\"proposalAttachment\">\n    <label class=\"custom-file-label\"\n           for=\"proposalAttachment\">\n      Choose file...\n    </label>\n  </div>\n  <button type=\"button\"\n          class=\"btn btn-primary\"\n          (click)=\"createProposal(proposal)\">\n    Create Proposal\n  </button>\n</form>\n"
+module.exports = "<form name=\"createProposal\">\n  <h3>Create a Proposal</h3>\n  <div class=\"form-group\">\n    <label for=\"voterGroup\">Select Voter Group</label>\n    <select class=\"form-control\" id=\"voterGroup\" name=\"voterGroup\" [(ngModel)]=\"proposal.voterGroupId\">\n      <option *ngFor=\"let voterGroup of voterGroups\"\n              [value]=\"voterGroup.pk\">\n        {{voterGroup.title}}\n      </option>\n    </select>\n  </div>\n  <div class=\"form-group\">\n    <input type=\"text\"\n           name=\"title\"\n           class=\"form-control\"\n           id=\"proposalTitle\"\n           aria-describedby=\"titleHelp\"\n           [(ngModel)]=\"proposal.title\"\n           placeholder=\"Enter title of the proposal\">\n  </div>\n  <div class=\"form-group\">\n    <textarea class=\"form-control\"\n              name=\"description\"\n              id=\"proposalDescription\"\n              [(ngModel)]=\"proposal.description\"\n              placeholder=\"Describe your proposal\"\n              rows=\"3\">\n    </textarea>\n  </div>\n  <button type=\"button\"\n          class=\"btn btn-primary\"\n          (click)=\"createProposal(proposal)\">\n    Create Proposal\n  </button>\n</form>\n"
 
 /***/ }),
 
@@ -693,16 +699,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_proposal_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/proposal.service */ "./src/app/services/proposal.service.ts");
 /* harmony import */ var _services_voterGroup_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/voterGroup.service */ "./src/app/services/voterGroup.service.ts");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
 
 
 var CreateProposalComponent = /** @class */ (function () {
-    function CreateProposalComponent(proposalService, voterGroupService, authService) {
+    function CreateProposalComponent(proposalService, voterGroupService, authService, router) {
         this.proposalService = proposalService;
         this.voterGroupService = voterGroupService;
         this.authService = authService;
+        this.router = router;
         this.userInfo = {};
         this.voterGroups = [];
         this.proposal = {};
@@ -733,12 +742,14 @@ var CreateProposalComponent = /** @class */ (function () {
         });
     };
     CreateProposalComponent.prototype.addProposalToGroup = function (proposalId) {
+        var _this = this;
         var params = {
             proposalId: proposalId,
             voterGroupId: this.proposal.voterGroupId
         };
         this.proposalService.addProposalToGroup(params)
             .subscribe(function (result) {
+            _this.router.navigate(['/dashboard']);
         }, function (error) {
             console.log(error);
         });
@@ -751,7 +762,8 @@ var CreateProposalComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_proposal_service__WEBPACK_IMPORTED_MODULE_2__["ProposalService"],
             _services_voterGroup_service__WEBPACK_IMPORTED_MODULE_3__["VoterGroupService"],
-            _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
+            _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
     ], CreateProposalComponent);
     return CreateProposalComponent;
 }());
@@ -807,11 +819,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProposalComponent = /** @class */ (function () {
-    function ProposalComponent(proposalService, route, voteService, authService) {
+    function ProposalComponent(proposalService, route, voteService, authService, router) {
         this.proposalService = proposalService;
         this.route = route;
         this.voteService = voteService;
         this.authService = authService;
+        this.router = router;
         this.proposal = {};
         this.userInfo = {};
         this.vote = {};
@@ -878,6 +891,7 @@ var ProposalComponent = /** @class */ (function () {
             .subscribe(function (result) {
             if (result.sk) {
                 _this.vote = result;
+                _this.router.navigate(['/dashboard']);
             }
             console.log(result);
         }, function (error) {
@@ -893,7 +907,8 @@ var ProposalComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_proposal_service__WEBPACK_IMPORTED_MODULE_2__["ProposalService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
             _services_vote_service__WEBPACK_IMPORTED_MODULE_5__["VoteService"],
-            _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
+            _services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], ProposalComponent);
     return ProposalComponent;
 }());
@@ -1574,7 +1589,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form>\n  <h1>Enter Confirmation</h1>\n  <div class=\"form-group\">\n    <label for=\"exampleInputEmail1\">Confirmation Code</label>\n    <input [(ngModel)]=\"user.code\" type=\"password\" name=\"code\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\">\n  </div>\n  <button type=\"button\" (click)=\"submit(user)\" class=\"btn btn-primary\">Submit</button>\n</form>\n"
+module.exports = "<form>\n  <h3>Enter Confirmation Code</h3>\n  <p>Do not close this page until you have entered the code sent via email.</p>\n  <div class=\"form-group\">\n    <input [(ngModel)]=\"user.code\" type=\"password\" name=\"code\" class=\"form-control\" id=\"exampleInputEmail1\" aria-describedby=\"emailHelp\" placeholder=\"Enter code\">\n  </div>\n  <button type=\"button\" (click)=\"submit(user)\" class=\"btn btn-primary\">Submit</button>\n</form>\n"
 
 /***/ }),
 
@@ -1697,7 +1712,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form *ngIf=\"!showConfirmation\">\n  <h1>Signup to Vote!</h1>\n  <div class=\"form-group\">\n    <label for=\"email\">Email</label>\n    <input [(ngModel)]=\"user.email\" type=\"email\" name=\"email\" class=\"form-control\" id=\"email\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\">\n    <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"firstName\">First Name</label>\n    <input [(ngModel)]=\"user.firstName\" type=\"text\" name=\"firstName\" class=\"form-control\" id=\"firstName\" aria-describedby=\"firstNameHelp\" placeholder=\"First Name\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"lastName\">Last Name</label>\n    <input [(ngModel)]=\"user.lastName\" type=\"text\" name=\"lastName\" class=\"form-control\" id=\"lastName\" aria-describedby=\"lastNameHelp\" placeholder=\"Last Name\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"exampleInputPassword1\">Password</label>\n    <input [(ngModel)]=\"user.password\" type=\"password\" name=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\">\n  </div>\n  <button type=\"button\" (click)=\"submit(user)\" class=\"btn btn-primary\">Submit</button>\n</form>\n\n<app-confirmation *ngIf=\"showConfirmation\" [user]=\"user\"></app-confirmation>\n"
+module.exports = "<form *ngIf=\"!showConfirmation\">\n  <h3>Signup</h3>\n  <div class=\"form-group\">\n    <input [(ngModel)]=\"user.email\" type=\"email\" name=\"email\" class=\"form-control\" id=\"email\" aria-describedby=\"emailHelp\" placeholder=\"Enter email\">\n    <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n  </div>\n  <div class=\"form-group\">\n    <input [(ngModel)]=\"user.firstName\" type=\"text\" name=\"firstName\" class=\"form-control\" id=\"firstName\" aria-describedby=\"firstNameHelp\" placeholder=\"First Name\">\n  </div>\n  <div class=\"form-group\">\n    <input [(ngModel)]=\"user.lastName\" type=\"text\" name=\"lastName\" class=\"form-control\" id=\"lastName\" aria-describedby=\"lastNameHelp\" placeholder=\"Last Name\">\n  </div>\n  <div class=\"form-group\">\n    <input [(ngModel)]=\"user.password\" type=\"password\" name=\"password\" class=\"form-control\" id=\"exampleInputPassword1\" placeholder=\"Password\">\n    <small id=\"passwordHelp\" class=\"form-text text-muted\">Password must 8 characters and include upper and lowercase letters, a numer and a special character</small>\n  </div>\n  <button type=\"button\" (click)=\"submit(user)\" class=\"btn btn-primary\">Submit</button>\n</form>\n\n<app-confirmation *ngIf=\"showConfirmation\" [user]=\"user\"></app-confirmation>\n"
 
 /***/ }),
 
@@ -1833,7 +1848,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-dark bg-dark mb-3\">\n  <a class=\"navbar-brand\" href=\"/\">The Voting App</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarTogglerDemo02\" aria-controls=\"navbarTogglerDemo02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarTogglerDemo02\">\n    <ul class=\"navbar-nav mr-auto mt-2 mt-lg-0\">\n      <li class=\"nav-item active\">\n        <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Dashboard <span class=\"sr-only\">(current)</span></a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"[routerLink]=\"['/signup']\">Signup</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"[routerLink]=\"['/login']\">Login</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"[routerLink]=\"['/signup/confirmation']\">Confirmation</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"[routerLink]=\"['/voter-group/create']\">Create Voter Group</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"[routerLink]=\"['/voter-group']\">Voter Group</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"[routerLink]=\"['/proposal/create']\">Create Proposal</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"[routerLink]=\"['/proposal/id']\">Vote on Proposal</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" (click)=\"signOut()\">Signout</a>\n      </li>\n    </ul>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-dark bg-dark mb-3\">\n  <a class=\"navbar-brand\" href=\"/\">The Voting App</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarToggler\" aria-controls=\"navbarToggler\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarToggler\">\n    <ul class=\"navbar-nav mr-auto mt-2 mt-lg-0\">\n      <li class=\"nav-item active\" data-toggle=\"collapse\" data-target=\".navbar-collapse.show\">\n        <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Dashboard</a>\n      </li>\n      <li class=\"nav-item\" data-toggle=\"collapse\" data-target=\".navbar-collapse.show\">\n        <a class=\"nav-link\"[routerLink]=\"['/signup']\">Signup</a>\n      </li>\n      <li class=\"nav-item\" data-toggle=\"collapse\" data-target=\".navbar-collapse.show\">\n        <a class=\"nav-link\"[routerLink]=\"['/login']\">Login</a>\n      </li>\n      <li class=\"nav-item\" data-toggle=\"collapse\" data-target=\".navbar-collapse.show\">\n        <a class=\"nav-link\"[routerLink]=\"['/voter-group/create']\">Create Voter Group</a>\n      </li>\n      <li class=\"nav-item\" data-toggle=\"collapse\" data-target=\".navbar-collapse.show\">\n        <a class=\"nav-link\"[routerLink]=\"['/proposal/create']\">Create Proposal</a>\n      </li>\n      <li class=\"nav-item\" data-toggle=\"collapse\" data-target=\".navbar-collapse.show\">\n        <a class=\"nav-link\" (click)=\"signOut()\">Signout</a>\n      </li>\n    </ul>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1995,7 +2010,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form>\n  <h1>Create a Voter Group</h1>\n  <div class=\"form-group\">\n    <label for=\"voterGroupTitle\">Title</label>\n    <input type=\"text\"\n           name=\"title\"\n           class=\"form-control\"\n           id=\"voterGroupTitle\"\n           aria-describedby=\"titleHelp\"\n           [(ngModel)]=\"voterGroup.title\"\n           placeholder=\"Enter title of the voter group\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"voterGroupDescription\">Description</label>\n    <textarea class=\"form-control\"\n              name=\"description\"\n              id=\"voterGroupDescription\"\n              [(ngModel)]=\"voterGroup.description\"\n              placeholder=\"Describe your voter group\"\n              rows=\"3\">\n    </textarea>\n  </div>\n  <div *ngIf=\"addVoter\" class=\"input-group mb-3\">\n    <input type=\"email\"\n           name=\"email\"\n           class=\"form-control\"\n           id=\"loginEmail\"\n           aria-describedby=\"emailHelp\"\n           placeholder=\"Enter email\">\n    <div class=\"input-group-append\">\n      <button class=\"btn btn-primary\" type=\"button\">Invite Voter</button>\n    </div>\n  </div>\n  <div class=\"row p-0\">\n    <div class=\"col-sm-4 mb-2\">\n      <button type=\"button\"\n              class=\"btn btn-large btn-warning\"\n              (click)=\"addVoter = true;\">\n        Add Voter\n      </button>\n    </div>\n  </div>\n  <div class=\"row p-0\">\n    <div class=\"col-sm-4\">\n      <button type=\"button\"\n              class=\"btn btn-primary\"\n              (click)=\"createVoterGroup(voterGroup)\">\n        Create Voter Group\n      </button>\n    </div>\n  </div>\n</form>\n"
+module.exports = "<form>\n  <h3>Create a Voter Group</h3>\n  <div class=\"form-group\">\n    <input type=\"text\"\n           name=\"title\"\n           class=\"form-control\"\n           id=\"voterGroupTitle\"\n           aria-describedby=\"titleHelp\"\n           [(ngModel)]=\"voterGroup.title\"\n           placeholder=\"Enter title of the voter group\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"voterGroupDescription\">Description</label>\n    <textarea class=\"form-control\"\n              name=\"description\"\n              id=\"voterGroupDescription\"\n              [(ngModel)]=\"voterGroup.description\"\n              placeholder=\"Describe your voter group\"\n              rows=\"3\">\n    </textarea>\n  </div>\n  <div *ngIf=\"addVoter\" class=\"input-group mb-3\">\n    <input type=\"email\"\n           name=\"email\"\n           class=\"form-control\"\n           id=\"loginEmail\"\n           aria-describedby=\"emailHelp\"\n           placeholder=\"Enter email\">\n    <div class=\"input-group-append\">\n      <button class=\"btn btn-primary\" type=\"button\">Invite Voter</button>\n    </div>\n  </div>\n  <small *ngIf=\"addVoter\" id=\"inviteHelp\" class=\"form-text text-muted mb-2\">Invite must be sent to existing user of the voting app. We're a work in progress here ;)</small>\n\n  <div class=\"row p-0\">\n    <div class=\"col-sm-4 mb-2\">\n      <button type=\"button\"\n              class=\"btn btn-large btn-warning\"\n              (click)=\"addVoter = true;\">\n        Add Voter\n      </button>\n    </div>\n  </div>\n  <div class=\"row p-0\">\n    <div class=\"col-sm-4\">\n      <button type=\"button\"\n              class=\"btn btn-primary\"\n              (click)=\"createVoterGroup(voterGroup)\">\n        Create Voter Group\n      </button>\n    </div>\n  </div>\n</form>\n"
 
 /***/ }),
 
@@ -2013,14 +2028,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_voterGroup_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/voterGroup.service */ "./src/app/services/voterGroup.service.ts");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
 
 var CreateVoterGroupComponent = /** @class */ (function () {
-    function CreateVoterGroupComponent(voterGroupService, authService) {
+    function CreateVoterGroupComponent(voterGroupService, authService, router) {
         this.voterGroupService = voterGroupService;
         this.authService = authService;
+        this.router = router;
         this.userInfo = {};
         this.voterGroup = {};
         this.email = '';
@@ -2044,12 +2062,14 @@ var CreateVoterGroupComponent = /** @class */ (function () {
         });
     };
     CreateVoterGroupComponent.prototype.addVoterToGroup = function (voterGroupId) {
+        var _this = this;
         var params = {
             email: this.userInfo.email,
             voterGroupId: voterGroupId
         };
         this.voterGroupService.addVoterToGroup(params)
             .subscribe(function (result) {
+            _this.router.navigate(['/dashboard']);
         }, function (error) {
             console.log(error);
         });
@@ -2061,7 +2081,8 @@ var CreateVoterGroupComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./create-voter-group.component.css */ "./src/app/voter-group/create-voter-group/create-voter-group.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_voterGroup_service__WEBPACK_IMPORTED_MODULE_2__["VoterGroupService"],
-            _services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]])
+            _services_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], CreateVoterGroupComponent);
     return CreateVoterGroupComponent;
 }());
@@ -2088,7 +2109,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>{{voterGroup.title}}</h2>\n<p>{{voterGroup.description}}</p>\n<div class=\"card shadow mb-5 bg-white rounded\"\n     style=\"width: 18rem;\">\n  <ul class=\"list-group list-group-flush\">\n    <li class=\"list-group-item\">\n      <h6 class=\"mb-0\">Michael Jeppesen</h6>\n    </li>\n    <li class=\"list-group-item\">\n      <h6 class=\"mb-0\">Michelle Bates</h6>\n    </li>\n    <li class=\"list-group-item\">\n      <h6 class=\"mb-0\">Deanna Flescher</h6>\n    </li>\n    <li class=\"list-group-item\">\n      <h6 class=\"mb-0\">Islando Sparks</h6>\n    </li>\n    <li class=\"list-group-item\">\n      <h6 class=\"mb-0\">Vern Coffey</h6>\n    </li>\n    <li class=\"list-group-item\">\n      <h6 class=\"mb-0\">All Star</h6>\n    </li>\n  </ul>\n</div>\n\n<div class=\"input-group mb-3\">\n  <input type=\"email\"\n         name=\"email\"\n         class=\"form-control\"\n         id=\"loginEmail\"\n         [(ngModel)]=\"newVoter.email\"\n         aria-describedby=\"emailHelp\"\n         placeholder=\"Enter email\">\n  <div class=\"input-group-append\">\n    <button class=\"btn btn-primary\" type=\"button\" (click)=\"inviteUser(newVoter)\">Invite Voter</button>\n  </div>\n</div>\n\n<form>\n  <div class=\"form-group\">\n    <label for=\"voterGroupName\">Name</label>\n    <input type=\"text\"\n           name=\"name\"\n           class=\"form-control\"\n           id=\"voterGroupName\"\n           aria-describedby=\"nameHelp\"\n           [(ngModel)]=\"voterGroup.title\"\n           placeholder=\"Enter name of the voter group\">\n  </div>\n  <div class=\"row p-0\">\n    <div class=\"col-sm-4\">\n      <button type=\"button\"\n              class=\"btn btn-primary\"\n              (click)=\"updateVoterGroup(voterGroup)\">\n        Create Voter Group\n      </button>\n    </div>\n  </div>\n</form>\n"
+module.exports = "<h3>{{voterGroup.title}}</h3>\n<p>{{voterGroup.description}}</p>\n<!--<div class=\"card shadow mb-5 bg-white rounded\"-->\n     <!--style=\"width: 18rem;\">-->\n  <!--<ul class=\"list-group list-group-flush\">-->\n    <!--<li class=\"list-group-item\">-->\n      <!--<h6 class=\"mb-0\">Michael Jeppesen</h6>-->\n    <!--</li>-->\n    <!--<li class=\"list-group-item\">-->\n      <!--<h6 class=\"mb-0\">Michelle Bates</h6>-->\n    <!--</li>-->\n    <!--<li class=\"list-group-item\">-->\n      <!--<h6 class=\"mb-0\">Deanna Flescher</h6>-->\n    <!--</li>-->\n    <!--<li class=\"list-group-item\">-->\n      <!--<h6 class=\"mb-0\">Islando Sparks</h6>-->\n    <!--</li>-->\n    <!--<li class=\"list-group-item\">-->\n      <!--<h6 class=\"mb-0\">Vern Coffey</h6>-->\n    <!--</li>-->\n    <!--<li class=\"list-group-item\">-->\n      <!--<h6 class=\"mb-0\">All Star</h6>-->\n    <!--</li>-->\n  <!--</ul>-->\n<!--</div>-->\n\n<div class=\"input-group mb-3\">\n  <input type=\"email\"\n         name=\"email\"\n         class=\"form-control\"\n         id=\"loginEmail\"\n         [(ngModel)]=\"newVoter.email\"\n         aria-describedby=\"emailHelp\"\n         placeholder=\"Enter email\">\n  <div class=\"input-group-append\">\n    <button class=\"btn btn-primary\" type=\"button\" (click)=\"inviteUser(newVoter)\">Invite Voter</button>\n  </div>\n</div>\n\n"
 
 /***/ }),
 

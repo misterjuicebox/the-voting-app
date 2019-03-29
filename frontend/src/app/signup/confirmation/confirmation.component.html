@@ -1,4 +1,4 @@
-<form>
+<form class="mb-2">
   <h3>Enter Confirmation Code</h3>
   <p>Do not close this page until you have entered the code sent via email.</p>
   <div class="form-group">
@@ -6,3 +6,6 @@
   </div>
   <button type="button" (click)="submit(user)" class="btn btn-primary">Submit</button>
 </form>
+
+<app-error-message *ngIf="error"></app-error-message>
+

@@ -98,6 +98,19 @@ export class VoterGroupService {
       );
   }
 
+  getVoterGroup (params?: any): Observable<any> {
+    return fromPromise(API.post("getVoterGroup", "/getVoterGroup", {body: params}))
+      .map(
+        result => {
+          return result;
+        },
+        error => {
+          // return and handle error
+          console.log(error);
+        }
+      );
+  }
+
   createUserVoterGroup (params: any): Observable<any> {
     return fromPromise(API.post("createUserVoterGroup", "/createUserVoterGroup", {body: params}))
       .map(

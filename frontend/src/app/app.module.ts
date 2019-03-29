@@ -19,6 +19,7 @@ import {ConfirmationComponent} from './signup/confirmation/confirmation.componen
 import {SignupComponent} from './signup/signup.component';
 import {CreateVoterGroupComponent} from './voter-group/create-voter-group/create-voter-group.component';
 import { LoadingComponent } from './loading/loading.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { LoadingComponent } from './loading/loading.component';
     ProposalComponent,
     CreateProposalComponent,
     LoadingComponent,
+    ErrorMessageComponent,
   ],
   imports: [
     BrowserModule,

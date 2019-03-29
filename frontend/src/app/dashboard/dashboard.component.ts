@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   userInfo: any = {};
 
   busy = true;
+  error = false;
 
   constructor(private voterGroupService: VoterGroupService,
               private authService: AuthService,
@@ -25,6 +26,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.userInfo = this.authService.getUserInfo();
     this.getVoterGroups({email: this.userInfo.email});
+  }
+
+  reset() {
+    this.error = false;
   }
 
   getVoterGroups(params) {
@@ -39,7 +44,7 @@ export class DashboardComponent implements OnInit {
       }, error => {
         // todo handle error
         this.busy = false;
-        console.log(error);
+        this.error = false;
       });
   }
 
@@ -58,15 +63,14 @@ export class DashboardComponent implements OnInit {
         }
         this.busy = false;
       }, error => {
-        // todo handle error
-        console.log(error)
+        this.error = false;
         this.busy = false;
       });
   }
 
   viewVoterGroup(voterGroup: any) {
     this.voterGroupService.selectedVoterGroup = voterGroup;
-    this.router.navigate(['/voter-group']);
+    this.router.navigate(['/voter-group/' + voterGroup.pk]);
   }
 
   viewProposal(proposal: any) {

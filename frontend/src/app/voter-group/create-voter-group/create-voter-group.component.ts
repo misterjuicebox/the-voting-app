@@ -17,27 +17,36 @@ export class CreateVoterGroupComponent implements OnInit {
 
   email: string = '';
 
+  busy = false;
+  error = false;
+
   constructor(private voterGroupService: VoterGroupService,
               private authService: AuthService,
               private router: Router) { }
 
   ngOnInit() {
-    this.getCognitoUserInfo();
-  }
-
-  getCognitoUserInfo() {
     this.userInfo = this.authService.getUserInfo();
   }
 
+  reset() {
+    this.error = false;
+  }
+
   createVoterGroup(voterGroup: any) {
+    this.busy = true;
+    this.reset();
     let params = {title: voterGroup.title, description: voterGroup.description};
     this.voterGroupService.createVoterGroup(params)
       .subscribe(result => {
         if (result.pk) {
           this.addVoterToGroup(result.pk);
+        } else {
+          this.error = true;
+          this.busy = false;
         }
     }, error => {
-        console.log(error)
+        this.busy = false;
+        this.error = true;
       });
   }
 
@@ -50,7 +59,8 @@ export class CreateVoterGroupComponent implements OnInit {
       .subscribe(result => {
         this.router.navigate(['/dashboard']);
       }, error => {
-        console.log(error);
+        this.busy = false;
+        this.error = true;
       })
   }
 

@@ -90,7 +90,6 @@ export class AuthService {
     return fromPromise(Auth.currentUserInfo())
       .map(
         result => {
-          debugger;
           if (!this.isEmpty(result.attributes)) {
             this.loggedIn.next(true);
             let userInfo = result.attributes;

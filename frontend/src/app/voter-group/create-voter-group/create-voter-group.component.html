@@ -1,4 +1,6 @@
-<form>
+<app-loading *ngIf="busy"></app-loading>
+
+<form class="mb-2" *ngIf="!busy">
   <h3>Create a Voter Group</h3>
   <div class="form-group">
     <input type="text"
@@ -10,7 +12,6 @@
            placeholder="Enter title of the voter group">
   </div>
   <div class="form-group">
-    <label for="voterGroupDescription">Description</label>
     <textarea class="form-control"
               name="description"
               id="voterGroupDescription"
@@ -19,35 +20,38 @@
               rows="3">
     </textarea>
   </div>
-  <div *ngIf="addVoter" class="input-group mb-3">
-    <input type="email"
-           name="email"
-           class="form-control"
-           id="loginEmail"
-           aria-describedby="emailHelp"
-           placeholder="Enter email">
-    <div class="input-group-append">
-      <button class="btn btn-primary" type="button">Invite Voter</button>
-    </div>
-  </div>
-  <small *ngIf="addVoter" id="inviteHelp" class="form-text text-muted mb-2">Invite must be sent to existing user of the voting app. We're a work in progress here ;)</small>
+  <!--<div *ngIf="addVoter" class="input-group mb-3">-->
+    <!--<input type="email"-->
+           <!--name="email"-->
+           <!--class="form-control"-->
+           <!--id="loginEmail"-->
+           <!--aria-describedby="emailHelp"-->
+           <!--placeholder="Enter email">-->
+    <!--<div class="input-group-append">-->
+      <!--<button class="btn btn-primary" type="button">Invite Voter</button>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<small *ngIf="addVoter" id="inviteHelp" class="form-text text-muted mb-2">Invite must be sent to existing user of the voting app. We're a work in progress here ;)</small>-->
 
+  <!--<div class="row p-0">-->
+    <!--<div class="col-sm-6 mb-2">-->
+      <!--<button type="button"-->
+              <!--class="btn btn-large btn-warning"-->
+              <!--(click)="addVoter = true;">-->
+        <!--Add Voter-->
+      <!--</button>-->
+    <!--</div>-->
+  <!--</div>-->
   <div class="row p-0">
-    <div class="col-sm-4 mb-2">
+    <div class="col-sm-6">
       <button type="button"
-              class="btn btn-large btn-warning"
-              (click)="addVoter = true;">
-        Add Voter
-      </button>
-    </div>
-  </div>
-  <div class="row p-0">
-    <div class="col-sm-4">
-      <button type="button"
-              class="btn btn-primary"
+              class="btn btn-large btn-primary"
               (click)="createVoterGroup(voterGroup)">
         Create Voter Group
       </button>
     </div>
   </div>
 </form>
+
+<app-error-message *ngIf="error"></app-error-message>
+

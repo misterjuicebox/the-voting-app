@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import {Observable} from 'rxjs';
 import 'rxjs/add/observable/forkJoin';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -15,6 +14,7 @@ export class ConfirmationComponent implements OnInit {
   @Input() user: any = {};
 
   busy = false;
+  error = false;
 
   isEmpty = UtilitiesService.isEmpty;
 
@@ -25,7 +25,14 @@ export class ConfirmationComponent implements OnInit {
   ngOnInit() {
   }
 
+  reset() {
+    this.error = false;
+  }
+
   submit(user: any) {
+    this.busy = true;
+    this.reset();
+
     const email = user.email;
     const code = user.code;
     const password = user.password;
@@ -34,10 +41,14 @@ export class ConfirmationComponent implements OnInit {
       .subscribe(result => {
           if (result === 'SUCCESS') {
             this.signIn(email, password);
+          } else {
+            this.busy = false;
+            this.error = true;
           }
         }, error => {
-          console.log(error);
-        }
+          this.busy = false;
+          this.error = true;
+      }
     );
   }
 
@@ -47,11 +58,11 @@ export class ConfirmationComponent implements OnInit {
         if (!this.isEmpty(result.userDataKey)) {
           this.getUserInfo();
         } else {
+          this.error = true;
           this.busy = false;
         }
       }, error => {
-        // todo handle error
-        console.log(error);
+        this.error = true;
         this.busy = false;
       })
   }
@@ -62,11 +73,11 @@ export class ConfirmationComponent implements OnInit {
         if (result) {
           this.router.navigate(['/dashboard']);
         } else {
+          this.error = true;
           this.busy = false;
         }
       }, error => {
-        // todo handle error
-        console.log(error);
+        this.error = true;
         this.busy = false;
       })
   }

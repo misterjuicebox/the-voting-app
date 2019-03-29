@@ -38,6 +38,11 @@ export class AppComponent {
             region: 'us-east-1'
           },
           {
+            name: "getVoterGroup",
+            endpoint: 'https://id5sul3r1e.execute-api.us-east-1.amazonaws.com/dev',
+            region: 'us-east-1'
+          },
+          {
             name: "addVoterToGroup",
             endpoint: 'https://id5sul3r1e.execute-api.us-east-1.amazonaws.com/dev',
             region: 'us-east-1'

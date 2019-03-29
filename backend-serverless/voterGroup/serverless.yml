@@ -75,6 +75,15 @@ functions:
         cors: true
         authorizer: aws_iam
 
+  getVoterGroup:
+    handler: getVoterGroup.main
+    events:
+    - http:
+        path: getVoterGroup
+        method: post
+        cors: true
+        authorizer: aws_iam
+
   addVoterToGroup:
     handler: addVoterToGroup.main
     events:

@@ -16,9 +16,10 @@ const routes: Routes = [
   {path: 'signup/confirmation', component: ConfirmationComponent},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  {path: 'voter-group', component: VoterGroupComponent, canActivate: [AuthGuard]},
+  // {path: 'voter-group', component: VoterGroupComponent, canActivate: [AuthGuard]},
   {path: 'voter-group/create', component: CreateVoterGroupComponent, canActivate: [AuthGuard]},
-  {path: 'proposal', component: ProposalComponent, canActivate: [AuthGuard]},
+  {path: 'voter-group/:voterGroupId', component: VoterGroupComponent, canActivate: [AuthGuard]},
+  // {path: 'proposal', component: ProposalComponent, canActivate: [AuthGuard]},
   {path: 'proposal/create', component: CreateProposalComponent, canActivate: [AuthGuard]},
   {path: 'proposal/:proposalId/:voterGroupId', component: ProposalComponent, canActivate: [AuthGuard]},
 

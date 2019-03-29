@@ -1,35 +1,49 @@
 <app-loading *ngIf="busy"></app-loading>
 
-<div *ngIf="!busy && voterGroups.length == 0" class="padding-top-10vh">
-  <div class="row align-items-center padding-top-20vh">
-    <div class="col-12 text-center">
-      <h3>You need to create a voter group</h3>
-      <div>
-        <button class="btn btn-info btn-lg mr-2" type="button" (click)="createVoterGroup()">Create Voter Group</button>
-      </div>
+<div *ngIf="!busy" class="row align-items-center" [ngClass]="{'padding-top-10vh': voterGroups.length == 0 && proposals.length == 0}">
+  <div class="col-12">
+    <h3>Dashboard</h3>
+    <div class="mb-3">
+      <button class="btn btn-info mr-2 mb-2" type="button" (click)="createVoterGroup()">Create Voter Group</button>
+      <button class="btn btn-success mb-2" type="button" (click)="createProposal()">Create Proposal</button>
     </div>
   </div>
 </div>
 
-<div *ngIf="!busy && proposals.length == 0">
-  <div class="row align-items-center padding-top-20vh">
-    <div class="col-12 text-center">
-      <h3>Create a proposal</h3>
-      <div>
-        <button class="btn btn-success btn-lg" type="button" (click)="createProposal()">Create Proposal</button>
-      </div>
-    </div>
-  </div>
-</div>
+<app-error-message *ngIf="error"></app-error-message>
+
+<!--<div *ngIf="!busy && voterGroups.length == 0" class="padding-top-10vh">-->
+  <!--<div class="row align-items-center padding-top-20vh">-->
+    <!--<div class="col-12 text-center">-->
+      <!--<h3>You need to create a voter group</h3>-->
+      <!--<div>-->
+        <!--<button class="btn btn-info btn-lg mr-2" type="button" (click)="createVoterGroup()">Create Voter Group</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<div *ngIf="!busy && proposals.length == 0">-->
+  <!--<div class="row align-items-center padding-top-20vh">-->
+    <!--<div class="col-12 text-center">-->
+      <!--<h3>Create a proposal</h3>-->
+      <!--<div>-->
+        <!--<button class="btn btn-success btn-lg" type="button" (click)="createProposal()">Create Proposal</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 
 
 <div *ngIf="!busy">
   <div *ngIf="proposals?.length > 0">
-    <h3>Your Proposals</h3>
+    <h4>Your Proposals</h4>
     <div *ngFor="let proposal of proposals" class="card shadow mb-5 bg-white rounded">
       <h4 class="card-header">{{proposal.title}}</h4>
       <div class="card-body">
-        <!--<a class="btn btn-warning" [routerLink]="['/proposal/' + proposal.pk]">View Proposal</a>-->
+        <h6 class="card-title">
+          {{proposal.description}}
+        </h6>
         <button type="button"
                 class="btn btn-warning"
                 (click)="viewProposal(proposal)">
@@ -40,7 +54,7 @@
   </div>
 
   <div *ngIf="voterGroups?.length > 0">
-    <h2>Your Voting Groups</h2>
+    <h4>Your Voting Groups</h4>
     <div *ngFor="let voterGroup of voterGroups" class="card shadow mb-5 bg-white rounded">
       <h4 class="card-header">{{voterGroup.title}}</h4>
       <div class="card-body">

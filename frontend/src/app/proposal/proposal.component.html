@@ -1,20 +1,32 @@
-<h1>{{proposal.title}}</h1>
+<app-loading *ngIf="busy"></app-loading>
 
-<p>{{proposal.description}}</p>
+<div *ngIf="!busy">
+  <h1>{{proposal.title}}</h1>
 
-<div *ngIf="!vote.sk" class="row">
-  <div class="col-sm-6 mb-2">
-    <button type="button"
-            class="btn btn-lg btn-success"
-            (click)="castVote(true)">
-      Approve
-    </button>
+  <p>{{proposal.description}}</p>
+
+  <div *ngIf="vote.sk && vote.vote == true" class="alert alert-success" role="alert">
+    You voted to approve this proposal.
   </div>
-  <div class="col-sm-6">
-    <button type="button"
-            class="btn btn-lg btn-danger"
-            (click)="castVote(false)">
-      Decline
-    </button>
+
+  <div *ngIf="vote.sk && vote.vote == false" class="alert alert-danger" role="alert">
+    You voted to decline this proposal.
+  </div>
+
+  <div *ngIf="!vote.sk" class="row">
+    <div class="col-sm-6 mb-2">
+      <button type="button"
+              class="btn btn-lg btn-success"
+              (click)="castVote(true)">
+        Approve
+      </button>
+    </div>
+    <div class="col-sm-6">
+      <button type="button"
+              class="btn btn-lg btn-danger"
+              (click)="castVote(false)">
+        Decline
+      </button>
+    </div>
   </div>
 </div>

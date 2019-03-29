@@ -1,4 +1,6 @@
-<form name="createProposal">
+<app-loading *ngIf="busy"></app-loading>
+
+<form *ngIf="!busy" class="mb-2" name="createProposal">
   <h3>Create a Proposal</h3>
   <div class="form-group">
     <label for="voterGroup">Select Voter Group</label>
@@ -33,3 +35,6 @@
     Create Proposal
   </button>
 </form>
+
+<app-error-message *ngIf="error"></app-error-message>
+

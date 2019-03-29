@@ -75,6 +75,7 @@ export class ProposalComponent implements OnInit {
       });
   }
   castVote(vote) {
+    this.busy = true;
     const params = {
       email: this.userInfo.email,
       proposalId: this.proposal.pk,
@@ -87,8 +88,10 @@ export class ProposalComponent implements OnInit {
           this.vote = result;
           this.router.navigate(['/dashboard']);
         }
+        this.busy = false;
         console.log(result)
       }, error => {
+        this.busy = false;
         // todo handle error
       });
   }

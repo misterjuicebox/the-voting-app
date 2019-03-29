@@ -8,6 +8,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class SignupComponent implements OnInit {
   user: any = {};
+  error = false;
+  busy = false;
 
   showConfirmation: boolean;
 
@@ -16,7 +18,13 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
+  reset() {
+    this.error = false;
+  }
+
   submit(user: any) {
+    this.busy = true;
+    this.reset();
     const email = user.email;
     const password = user.password;
     const firstName = user.firstName;
@@ -31,10 +39,13 @@ export class SignupComponent implements OnInit {
       }
     };
 
-    this.authService.signUp(params).subscribe(result => {
-      this.showConfirmation = true;
+    this.authService.signUp(params)
+      .subscribe(result => {
+        this.showConfirmation = true;
+        this.busy = false;
       }, error => {
-        console.log(error);
+        this.busy = false;
+        this.error = true;
     });
   }
 }

@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   user: any = {};
 
   busy = false;
+  error = false;
 
   isEmpty = UtilitiesService.isEmpty;
 
@@ -22,19 +23,24 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  reset() {
+    this.error = false;
+  }
+
   login(user: any) {
     this.busy = true;
+    this.reset();
 
     this.authService.signIn(user.email, user.password)
       .subscribe(result => {
         if (!this.isEmpty(result.userDataKey)) {
           this.getUserInfo();
         } else {
+          this.error = true;
           this.busy = false;
         }
       }, error => {
-          // todo handle error
-          console.log(error);
+          this.error = true;
           this.busy = false;
         })
   }
@@ -45,11 +51,11 @@ export class LoginComponent implements OnInit {
         if (result) {
           this.router.navigate(['/dashboard']);
         } else {
+          this.error = true;
           this.busy = false;
         }
       }, error => {
-        // todo handle error
-        console.log(error);
+        this.error = true;
         this.busy = false;
       })
   }

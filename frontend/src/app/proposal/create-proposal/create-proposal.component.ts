@@ -14,6 +14,9 @@ export class CreateProposalComponent implements OnInit {
   voterGroups: any = [];
   proposal: any = {};
 
+  busy = false;
+  error = false;
+
   constructor(private proposalService: ProposalService,
               private voterGroupService: VoterGroupService,
               private authService: AuthService,
@@ -21,28 +24,40 @@ export class CreateProposalComponent implements OnInit {
 
 
   ngOnInit() {
+    this.busy = true;
     this.userInfo = this.authService.getUserInfo();
     this.getVoterGroups({email: this.userInfo.email});
+  }
+
+  reset() {
+    this.error = false;
   }
 
   getVoterGroups(params) {
     this.voterGroupService.getVoterGroups(params)
       .subscribe(result => {
         this.voterGroups = result;
+        this.busy = false;
       }, error => {
-        console.log(error);
+        this.busy = false;
+        this.error = true;
       });
   }
 
   createProposal(proposal: any) {
+    this.busy = true;
     let params = {title: proposal.title, description: proposal.description, voterGroupId: proposal.voterGroupId};
     this.proposalService.createProposal(params)
       .subscribe(result => {
         if (result.pk) {
           this.addProposalToGroup(result.pk);
+        } else {
+          this.error = true;
+          this.busy = false;
         }
       }, error => {
-        console.log(error);
+        this.busy = false;
+        this.error = true;
       });
   }
 
@@ -55,7 +70,8 @@ export class CreateProposalComponent implements OnInit {
       .subscribe(result => {
         this.router.navigate(['/dashboard']);
       }, error => {
-        console.log(error);
+        this.busy = false;
+        this.error = true;
       })
   }
 
